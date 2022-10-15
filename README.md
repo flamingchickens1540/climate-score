@@ -1,6 +1,12 @@
-Created for my blog article
+# Installation Guide
 
-https://dev.to/ksckaan1/creating-a-website-using-golang-and-sveltejs-together-55g8
+```
+npm i
+go get
+```
 
-Before lauch, run `npm install` from command line.
+# Running the application
 
+```
+make run -j
+```
