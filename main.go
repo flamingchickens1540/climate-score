@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	engine := html.New("./templates", ".html")
+	engine := html.New("./templates", ".svelte")
 
 	app := fiber.New(fiber.Config{
 		Views: engine,

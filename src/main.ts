@@ -1,1 +1,1 @@
-export * from './App.svelte'
+export * from './App.svelte';
