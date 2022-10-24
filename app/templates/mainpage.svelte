@@ -19,15 +19,18 @@
     }
     async function getWattBuy(){
         const response = await fetch('https://apis.wattbuy.com/v3/electricity/carbon-footprint?address=1515%20se%20umatilla%20st&city=portland&state=Or&zip=97202', options)
-        const data = await response.text();
+        const data = await response.json();
         if(response.ok){
             console.log(data);
-            return data;
+            return data as Promise<JSON>;
         }else{
             throw new Error(data);
         }
     }
 
+    //async function get //moreAPIS HERE!
+
+    data = getWattBuy();
 
     function handleGetWattBuy(){
         data = getWattBuy();
@@ -38,22 +41,25 @@
     }
 
     async function computeScore(){
-        return await queryWattBuy();//later we will add more apis
+        //later we will add more apis
+        let carbonFootprint = queryWattBuy();
+        let footprintElement = document.createElement('p');
+        footprintElement.innerText = await JSON.stringify(carbonFootprint);
+        return footprintElement;
     }
 
     async function queryWattBuy(){
-        let jsonData = JSON.parse(await getWattBuy());
-        return jsonData.avg_carbon_foot_print;
+        let jsonData = await getWattBuy();
+        return jsonData.avg_carbon_foot_print; //figure out how to get data from this json
     }
     async function displayScore(){
         score = await computeScore();
     }
-    displayScore();
-    //data = getWattBuy();
+    displayScore();    
 </script>
 
 <body>
-    <button id="wattBuy" on:click={getWattBuy}>getWattBuy</button>
+    <button id="wattBuy" on:click={handleGetWattBuy}>getWattBuy</button>
     <button id="wattDelete" on:click={removeWattBuy}>removeWattBuy</button>
     <button on:click={test}>test</button>
     
@@ -69,7 +75,7 @@
         {:else}
             <p></p>
         {/if}
-    {/await}   
+    {/await}
 
 
 </body>
