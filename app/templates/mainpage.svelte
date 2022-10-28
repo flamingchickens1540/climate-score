@@ -22,7 +22,7 @@
         const data = await response.json();
         if(response.ok){
             console.log(data);
-            return data as Promise<JSON>;
+            return data;
         }else{
             throw new Error(data);
         }
@@ -50,7 +50,7 @@
 
     async function queryWattBuy(){
         let jsonData = await getWattBuy();
-        return jsonData.avg_carbon_foot_print; //figure out how to get data from this json
+        return jsonData['avg_carbon_foot_print']; //figure out how to get data from this json
     }
     async function displayScore(){
         score = await computeScore();
@@ -61,17 +61,18 @@
 <body>
     <button id="wattBuy" on:click={handleGetWattBuy}>getWattBuy</button>
     <button id="wattDelete" on:click={removeWattBuy}>removeWattBuy</button>
-    <button on:click={test}>test</button>
+    <button id="test" on:click={test}>test</button>
     
     {#await data then value}
-        {#if value !=null}
+        {#if value!=null}
 	        <p>{value}</p>
         {:else}
             <p></p>
         {/if}
-
-        {#if score != null}
-        <p id="climateScore">{score}</p>
+    {/await}
+    {#await score then score}
+        {#if score!=null}
+            <p>Score: {score}</p>
         {:else}
             <p></p>
         {/if}
