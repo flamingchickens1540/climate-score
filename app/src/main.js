@@ -1,4 +1,4 @@
-import App from '../templates/mainpage.svelte';
+import App from './mainpage.svelte';
 
 const app = new App({
 	target: document.body,
