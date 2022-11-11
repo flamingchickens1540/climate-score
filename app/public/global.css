@@ -61,3 +61,17 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+
+#address-data-btn{
+	border-radius: 100%;
+}
+
+#address-data{
+	margin: auto;
+	width: 50%;
+	border: 3px;
+	border-color: aquamarine;
+	padding: 10px;
+	
+}

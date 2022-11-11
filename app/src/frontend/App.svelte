@@ -1,4 +1,4 @@
-<script>
+<script src="main.js">
 	export let name;
 </script>
 
