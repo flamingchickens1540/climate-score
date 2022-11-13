@@ -4,7 +4,6 @@
 	//Get WalkScore Data
 	async function onSubmit(e) {	
 		const formData = new FormData(e.target);
-		const key = ""; //walkscore api key
         const address = formData.get('address');
         const street = formData.get('street').toString().split(" ")[0];
         const kindOfStreet = formData.get('street').toString().split(" ")[1];

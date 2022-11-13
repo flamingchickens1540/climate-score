@@ -1,68 +1,39 @@
 <body>
-
     <script lang="ts">
+        import { getWalkScore } from '../../bawkend/walkScore';
+        import {getAvgCarbonFootprint} from '../../bawkend/wattBuy';
         import ClimateForm from '../objects/ClimateForm.svelte'
-        const wattOptions = {
-            method: 'GET',
-            headers: {
-            accept: 'application/json',
-            'x-api-key': ' rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh'
-            }
-        };
+
         var score;
-        var data;
+        var wattData;
         
         //Test Function: Complete
-        exportfunction test(){
+        function test(){
             console.log("test");
         }
-    
-        //Get WattBuy Data: Complete 
-        //more APIS HERE!
-        
-        //data = getWattBuy();
-    
-        //Call the getWattBuy Function When Someone Clicks the Button
-        export function getWattBuyData(){
-            data = getWattBuy();
-        }
-        
+                    
         //Remove the WattBuy Data from the Screen
-        export function removeWattBuyData(){
-            data = null;
+        function removeWattBuyData(){
+            wattData = null;
         }
-    
-        //Compute Score Based On All APIs and Sources
-        export async function computeScore(){
-            //later we will add more apis
-            var carbonFootprint = queryWattBuy();
-            var footprintElement = document.createElement('p');
-            footprintElement.innerText = JSON.stringify(carbonFootprint);
-            return footprintElement;
+
+        function getWattBuyData(){
+            getAvgCarbonFootprint("1515 SE Umatilla St, Portland, OR 97202")
+            .then((data) => {
+                console.log(data);
+                wattData = data;
+            });
         }
-    
-        //Query from the WattBuy API Data
-        export async function queryWattBuy(){
-            var jsonData = await getWattBuy();
-            //we will get more properties from wattbuys later
-            return jsonData['avg_carbon_foot_print'];
+
+        function getWalkScoreData(){
+            getWalkScore("https://api.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
+            .then((data) => {
+                console.log(data);
+                score = data;
+            });
         }
-    
-        //Display the Climate Score
-        export async function displayScore(){
-            score = await computeScore();
-            console.log(score);
-        }
-        //displayScore();
         
-        //open a settings menu
-        export function handleSettings(this){
-    
-        }
-        //opens a menu sidebar
-        export function handleMenu(this){
-            this.classList.toggle("change");
-        }
+=        
     </script>
 
     <div class="icon-bar">
@@ -79,9 +50,9 @@
     </div>
 
     <div>
-        <button id="wattBuy" on:click={getWattBuyData}>Get Watt Buy</button>
+        <button id="wattBuy" on:click={getWattBuyData}>Test Watt Buy</button>
         <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-        <button id="climateScore" on:click={displayScore}>Get Climate Score</button>
+        <button id="walkScore" on:click={getWalkScore}>Test Walk Score</button>
         <button id="test" on:click={test}>test</button>
         <div id="address-data">
             <ClimateForm action="POST" id="address-form"></ClimateForm>
