@@ -1,39 +1,49 @@
-<body>
     <script lang="ts">
         import { getWalkScore } from '../../bawkend/walkScore';
-        import {getAvgCarbonFootprint} from '../../bawkend/wattBuy';
-        import ClimateForm from '../objects/ClimateForm.svelte'
+        import { getAvgCarbonFootprint } from '../../bawkend/wattBuy';        
+        import ClimateForm from '../components/ClimateForm.svelte';
+        import Box from '../components/Box.svelte';
+        //TODO: figure out why importation isn't working
 
-        var score;
-        var wattData;
+        var score = 0;
+        var wattData = 0;
         
-        //Test Function: Complete
+        //Test Function
+        //Incomplete 
+        //TODO: Remove
         function test(){
             console.log("test");
         }
-                    
-        //Remove the WattBuy Data from the Screen
+        //open a settings manu
+        //Status: Incomplete
+        //TODO: write function
+        function handleMenu(){
+            console.log("handleMenu");
+        }
+        //Remove the WattBuy Data from the Screen 
+        //Status: Complete
         function removeWattBuyData(){
             wattData = null;
         }
-
-        function getWattBuyData(){
-            getAvgCarbonFootprint("1515 SE Umatilla St, Portland, OR 97202")
+        //Gets the watt buy data and displays it on the screen
+        //Status: Complete
+        function testWattBuyData(){
+            getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
             .then((data) => {
                 console.log(data);
                 wattData = data;
             });
         }
-
-        function getWalkScoreData(){
+        //gets the walkscore data and displays it on the screen
+        //Status: Complete
+        function testWalkScoreData(){
             getWalkScore("https://api.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
             .then((data) => {
                 console.log(data);
                 score = data;
             });
         }
-        
-=        
+             
     </script>
 
     <div class="icon-bar">
@@ -48,20 +58,20 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
     </div>
-
-    <div>
-        <button id="wattBuy" on:click={getWattBuyData}>Test Watt Buy</button>
-        <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-        <button id="walkScore" on:click={getWalkScore}>Test Walk Score</button>
-        <button id="test" on:click={test}>test</button>
-        <div id="address-data">
-            <ClimateForm action="POST" id="address-form"></ClimateForm>
+    <Box>
+        <div>
+            <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+            <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+            <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
+            <button id="test" on:click={test}>test</button>
+            <div id="address-data">
+                <ClimateForm action="POST" id="address-form"></ClimateForm>
+            </div>
         </div>
-    </div>
-    
+    </Box>
     
     <div>
-        {#await data then value}
+        {#await wattData then value}
             {#if value!=null}
                 <p>{value}</p>
             {:else}
@@ -77,9 +87,6 @@
         {/await}
     </div>
     
-
-
-</body>
 
 <style>
 
