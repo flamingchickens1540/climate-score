@@ -30,6 +30,7 @@
         }
         //Gets the watt buy data and displays it on the screen
         //Status: Complete
+        
         function testWattBuyData(){
             getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
             .then((data) => {
@@ -37,8 +38,10 @@
                 wattData = data;
             });
         }
+        
         //gets the walkscore data and displays it on the screen
         //Status: Complete
+        
         function testWalkScoreData(){
             getWalkScore("https://api.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
             .then((data) => {
@@ -46,6 +49,7 @@
                 score = data;
             });
         }
+        
              
     </script>
 
@@ -63,9 +67,7 @@
     </div>
     <Box>
         <div>
-            <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
             <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-            <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
             <button id="test" on:click={test}>test</button>
             <div id="address-data">
                 <ClimateForm action="POST" id="address-form"></ClimateForm>
