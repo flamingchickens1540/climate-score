@@ -1,4 +1,4 @@
-import { WATTBUY_API_KEY } from "../../secrets/api_keys";
+import { WATTBUY_API_KEY } from "../../../secrets/api_keys";
 
 //query wattBuy api avg_carbon_footprint
 export async function getAvgCarbonFootprint (address: string): Promise<number> {

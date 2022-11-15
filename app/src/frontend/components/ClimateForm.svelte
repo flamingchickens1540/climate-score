@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getWalkScore } from '../../bawkend/walkScore';
-	import { getPositionStack } from '../../bawkend/walkScore';
+	import { getClimateScore } from '../../bwakend/climateScore';
 	//Get WalkScore Data
 	async function onSubmit(e) {	
 		const formData = new FormData(e.target);
@@ -12,20 +11,9 @@
         const state = formData.get('state');
         const zip = formData.get('zip');
 
-		const wattBuyAddress = `address=${address}&city=${cityName}&state=${state}&zip=${zip}`;
-		const wattBuy = await getWalkScore(wattBuyAddress);
-
-		//get positionstack data to get lat and long for walkscore api
-		const positionstackAddress = address + street + kindOfStreet + cardinal + cityName + state;
-
-		const lon = getPositionStack(positionstackAddress)['data']['results']['longitude'];
-		const lat = getPositionStack(positionstackAddress)['data']['results']['latitude'];
+		const climateScore = await getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal);
 		
-		const walkScoreAddress = `https://api.walkscore.com/score?format=json&address=${address}%${street}%20${kindOfStreet}%20${cityName}%20${state}%${zip}&lat=${lat}&lon=${lon}&transit=1&bike=1&wsapikey=`;
-
-		const walkScore = await getWalkScore(walkScoreAddress);
-
-		return walkScore;
+		return climateScore;
 }
 </script>
 
