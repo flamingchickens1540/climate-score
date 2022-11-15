@@ -1,6 +1,6 @@
     <script lang="ts">
-        import { getWalkScore } from '../../bwakend/apis/walkScore';
-        import { getAvgCarbonFootprint } from '../../bwakend/apis/wattBuy';        
+        import { getWalkScore } from '../../backend/apis/walkScore';
+        import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
         //TODO: figure out why importation isn't working even though it recognizes the file pathname

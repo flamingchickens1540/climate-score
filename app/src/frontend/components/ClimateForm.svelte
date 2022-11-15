@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getClimateScore } from '../../bwakend/climateScore';
+	import { getClimateScore } from '../../backend/climateScore';
 	//Get WalkScore Data
 	async function onSubmit(form) {	
 		const formData = new FormData(form.target);
