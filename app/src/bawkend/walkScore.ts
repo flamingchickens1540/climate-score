@@ -15,7 +15,7 @@ export async function getPositionStack(address: string) {
 }
 
 export async function getWalkScore (address: string): Promise<number> {
-    const url = address+WALKSCORE_API_KEY;
+    const url = address + WALKSCORE_API_KEY;
     const response = await fetch(url);
     const data = await response.json();
     return data.walkscore;

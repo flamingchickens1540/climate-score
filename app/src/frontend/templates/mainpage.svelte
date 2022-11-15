@@ -3,13 +3,16 @@
         import { getAvgCarbonFootprint } from '../../bawkend/wattBuy';        
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
-        //TODO: figure out why importation isn't working
+        //TODO: figure out why importation isn't working even though it recognizes the file pathname
+        //for some reason it recognizes the file path and the function, but cannot resolve the import
+        //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
+        
 
         var score = 0;
         var wattData = 0;
         
         //Test Function
-        //Incomplete 
+        //Complete 
         //TODO: Remove
         function test(){
             console.log("test");
@@ -73,14 +76,14 @@
     <div>
         {#await wattData then value}
             {#if value!=null}
-                <p>{value}</p>
+                <p>{value.toString()}</p>
             {:else}
                 <p></p>
             {/if}
         {/await}
         {#await score then score}
             {#if score!=null}
-                <p>Score: {score}</p>
+                <p>Score: {score.toString()}</p>
             {:else}
                 <p></p>
             {/if}
