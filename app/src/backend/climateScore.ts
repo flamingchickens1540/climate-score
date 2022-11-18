@@ -1,6 +1,6 @@
 import { getWalkScore } from "./apis/walkScore";
 import { getPositionStack } from "./apis/walkScore";
-import { getAvgCarbonFootprint } from "./apis/wattBuy";
+import { getEnergyScore, getAvgCarbonFootprint } from "./apis/wattBuy";
 
 //collects all the data from the apis and returns a climate score
 export async function getClimateScore (address: string, cityName: string, state: string, zip: string, street: string, kindOfStreet: string, cardinal: string): Promise<number> {
@@ -12,7 +12,6 @@ export async function getClimateScore (address: string, cityName: string, state:
     //Gets positionstack data to get lat and long for walkscore api
     const positionstackAddress = address + street + kindOfStreet + cardinal + cityName + state;
 
-    
     //longitude and latitude are needed for walkscore api
     const lon = (await getPositionStack(positionstackAddress)).data.results.longitude;
     const lat = (await getPositionStack(positionstackAddress)).data.results.latitude;
@@ -21,9 +20,12 @@ export async function getClimateScore (address: string, cityName: string, state:
     const walkScore = await getWalkScore(walkScoreAddress);
 
     const avgCarbonFootprint = await getAvgCarbonFootprint(address);
-    const adjustedCarbonFootprint = avgCarbonFootprint * 0.0395;
+    const adjustedCarbonFootprint = avgCarbonFootprint * -0.0395;
 
-    const climateScore = (walkScore + adjustedCarbonFootprint) / 2;
+    const energyScore = await getEnergyScore(address);
 
+    const climateScore = (walkScore + adjustedCarbonFootprint + energyScore) / 3;
+
+    console.log('Climate Score: ' + climateScore);
     return climateScore;
 }

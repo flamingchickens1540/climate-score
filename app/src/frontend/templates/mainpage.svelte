@@ -32,7 +32,7 @@
         //Status: Complete
 
         function testWattBuyData(){
-            getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
+            getAvgCarbonFootprint("addresxs=1515&city=Portland&state=Or&zip=97202")
             .then((data) => {
                 console.log(data);
                 wattData = data;
@@ -43,10 +43,10 @@
         //Status: Complete
 
         function testWalkScoreData(){
-            getWalkScore("https://api.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
+            getWalkScore("https://apis.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
             .then((data) => {
                 console.log(data);
-                score = data;
+                score = data; 
             });
         }
     </script>

@@ -27,8 +27,10 @@ function getClimateScore(address, cityName, state, zip, street, kindOfStreet, ca
         const walkScoreAddress = `https://api.walkscore.com/score?format=json&address=${address}%${street}%20${kindOfStreet}%20${cityName}%20${state}%${zip}&lat=${lat}&lon=${lon}&transit=1&bike=1&wsapikey=`;
         const walkScore = yield (0, walkScore_1.getWalkScore)(walkScoreAddress);
         const avgCarbonFootprint = yield (0, wattBuy_1.getAvgCarbonFootprint)(address);
-        const adjustedCarbonFootprint = avgCarbonFootprint * 0.0395;
-        const climateScore = (walkScore + adjustedCarbonFootprint) / 2;
+        const adjustedCarbonFootprint = avgCarbonFootprint * -0.0395;
+        const energyScore = yield (0, wattBuy_1.getEnergyScore)(address);
+        const climateScore = (walkScore + adjustedCarbonFootprint + energyScore) / 3;
+        console.log('Climate Score: ' + climateScore);
         return climateScore;
     });
 }

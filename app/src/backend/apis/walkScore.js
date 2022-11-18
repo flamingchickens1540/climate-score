@@ -17,20 +17,39 @@ function getPositionStack(address) {
         const url = `http://api.positionstack.com/v1/forward?access_key=${api_keys_1.POSITIONSTACK_API_KEY}&query=${address}&limit=1`;
         const response = yield fetch(url);
         const data = yield response.json();
-        if (data.data.length === 0 || data.data[0].latitude === undefined || data.data[0].longitude === undefined) {
-            throw new Error("Houston, we have a problem");
+        if (Object.keys(data.data).length === 0 || data.data.results.latitude === null || data.data.results.longitude === null) {
+            console.log(data.data);
+            throw new Error("Houston, we can't find the latitude and longitude of this address");
         }
         else {
+            console.log(data.data[0]);
             return data.data[0];
         }
     });
 }
 exports.getPositionStack = getPositionStack;
 function getWalkScore(address) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const url = address + api_keys_1.WALKSCORE_API_KEY;
         const response = yield fetch(url);
-        const data = yield response.json();
+        const isJSONContentType = (_a = response.headers.get('content-type')) === null || _a === void 0 ? void 0 : _a.includes('json');
+        let data;
+        if (isJSONContentType) {
+            try {
+                data = yield response.json();
+            }
+            catch (err) {
+                console.warn(err);
+                data = yield response.text();
+                console.log({ data, headers: Object.fromEntries(response.headers.entries()), url: response.url });
+            }
+        }
+        else {
+            console.log('Response is not in json format');
+            data = yield response.text();
+        }
+        console.log(data);
         return data.walkscore;
     });
 }
