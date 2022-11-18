@@ -6,11 +6,11 @@
         //TODO: figure out why importation isn't working even though it recognizes the file pathname
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
-        
+
 
         var score = 0;
         var wattData = 0;
-        
+
         //Test Function
         //Complete 
         //TODO: Remove
@@ -26,11 +26,11 @@
         //Remove the WattBuy Data from the Screen 
         //Status: Complete
         function removeWattBuyData(){
-            wattData = null;
+            wattData = 0;
         }
         //Gets the watt buy data and displays it on the screen
         //Status: Complete
-        
+
         function testWattBuyData(){
             getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
             .then((data) => {
@@ -38,10 +38,10 @@
                 wattData = data;
             });
         }
-        
+
         //gets the walkscore data and displays it on the screen
         //Status: Complete
-        
+
         function testWalkScoreData(){
             getWalkScore("https://api.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
             .then((data) => {
@@ -49,8 +49,6 @@
                 score = data;
             });
         }
-        
-             
     </script>
 
     <div class="icon-bar">
@@ -65,26 +63,29 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
     </div>
+    <!-- svelte-ignore missing-declaration -->
     <Box>
         <div>
             <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+            <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+            <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
             <button id="test" on:click={test}>test</button>
             <div id="address-data">
                 <ClimateForm action="POST" id="address-form"></ClimateForm>
             </div>
         </div>
     </Box>
-    
+
     <div>
         {#await wattData then value}
-            {#if value!=null}
+            {#if value!=0}
                 <p>{value.toString()}</p>
             {:else}
                 <p></p>
             {/if}
         {/await}
         {#await score then score}
-            {#if score!=null}
+            {#if score!=0}
                 <p>Score: {score.toString()}</p>
             {:else}
                 <p></p>
