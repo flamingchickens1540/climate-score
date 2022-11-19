@@ -17,12 +17,7 @@
         function test(){
             console.log("test");
         }
-        //open a settings manu
-        //Status: Incomplete
-        //TODO: write function
-        function handleMenu(){
-            console.log("handleMenu");
-        }
+ 
         //Remove the WattBuy Data from the Screen 
         //Status: Complete
         function removeWattBuyData(){
@@ -49,8 +44,14 @@
                 score = data; 
             });
         }
+        //open a settings manu
+        //Status: Incomplete
+        //TODO: write function
+        function handleMenu(x:any){
+            x.classList.toggle("change");
+        }
     </script>
-
+    <h1 id="climate-header">Climate Score</h1>
     <div class="icon-bar">
     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
     <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -58,13 +59,14 @@
     <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
     </div>
 
-    <div class="container" id="menu-bar-div" on:keydown={handleMenu}>
+    <div class="container" id="menu-bar-div" on:click={handleMenu(this)} on:keydown={handleMenu(this)}>
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
     </div>
     <!-- svelte-ignore missing-declaration -->
-    <Box>
+<div>
+    <Box id="climate-form-box">
         <div>
             <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
             <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
@@ -75,6 +77,8 @@
             </div>
         </div>
     </Box>
+</div>
+
 
     <div>
         {#await wattData then value}
@@ -92,9 +96,32 @@
             {/if}
         {/await}
     </div>
+
+    <div id="climate-footer"></div>
     
 
 <style>
+
+    #climate-header{
+        position: absolute;
+        width: 859px;
+        height: 125px;
+
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 128px;
+        line-height: 154px;
+
+        color: #D3D3D3;
+
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);   
+    }
+
+    #climate-footer{
+        background-color: #25591F;
+    }
+    
 
     .container {
     display: inline-block;
@@ -126,22 +153,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    #header{
-        position: absolute;
-        width: 859px;
-        height: 125px;
-
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 128px;
-        line-height: 154px;
-
-        color: #D3D3D3;
-
-        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     #screenshot{

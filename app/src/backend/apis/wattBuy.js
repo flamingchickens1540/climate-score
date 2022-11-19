@@ -10,6 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEnergyScore = exports.getAvgCarbonFootprint = void 0;
+const api_keys_1 = require("../../secrets/api_keys");
+const COALWEIGHT = -2;
+const GASWEIGHT = -1;
+const NUCLEARWEIGHT = .5;
+const HYDROWEIGHT = 1;
+const WINDWEIGHT = 1.1;
+const SOLARWEIGHT = 1.1;
 //query wattBuy api avg_carbon_footprint
 function getWattBuy(address) {
     var _a;
@@ -18,7 +25,8 @@ function getWattBuy(address) {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                'x-api-key': 'rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh',
+                //api key is not the issue
+                'x-api-key': api_keys_1.WATTBUY_API_KEY,
                 'content-type': 'application/json',
             },
             mode: 'no-cors',
@@ -38,7 +46,7 @@ function getWattBuy(address) {
             }
         }
         else {
-            console.log('response is not json');
+            console.warn('Response is not json');
             data = yield response.text();
         }
         console.log(data);
@@ -59,17 +67,17 @@ function getEnergyScore(address) {
         let energyScore = 0;
         const wattBuy = yield getWattBuy(address);
         //Coal
-        energyScore -= 2 * (wattBuy.data.estimated_generation_data[0]);
+        energyScore += COALWEIGHT * (wattBuy.data.estimated_generation_data[0].value);
         //Nuclear
-        energyScore += 0.5 * (wattBuy.data.estimated_generation_data[1]);
+        energyScore += NUCLEARWEIGHT * (wattBuy.data.estimated_generation_data[1].value);
         //Natural Gas
-        energyScore -= (wattBuy.data.estimated_generation_data[2]);
+        energyScore += GASWEIGHT * (wattBuy.data.estimated_generation_data[2].value);
         //Hydro
-        energyScore += (wattBuy.data.estimated_generation_data[3]);
+        energyScore += HYDROWEIGHT * (wattBuy.data.estimated_generation_data[3].value);
         //Wind
-        energyScore += 1.1 * (wattBuy.data.estimated_generation_data[4]);
+        energyScore += WINDWEIGHT * (wattBuy.data.estimated_generation_data[4].value);
         //Solar
-        energyScore += 1.1 * (wattBuy.data.estimated_generation_data[5]);
+        energyScore += SOLARWEIGHT * (wattBuy.data.estimated_generation_data[5].value);
         console.log('energyScore: ' + energyScore);
         return 2 * (energyScore / 6);
     });
