@@ -25,19 +25,9 @@
         function removeWattBuyData(){
             wattData = 0;
         }
-        //Gets the watt buy data and displays it on the screen
-        //Status: Complete
-
-        function testWattBuyData(){
-            getAvgCarbonFootprint("addresxs=1515&city=Portland&state=Or&zip=97202")
-            .then((data) => {
-                console.log(data);
-                wattData = data;
-            });
-        }
 
         //gets the walkscore data and displays it on the screen
-        //Status: Complete
+        //Status: Incomplete
 
         function testWalkScoreData(){
             getWalkScore("https://apis.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
@@ -46,15 +36,21 @@
                   score = data; 
             });
         }
-
+        ////Gets the watt buy data and displays it on the screen
+        //Status: Incomplete
+        function testWattBuyData1(){
+            getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
+            .then((data) => {
+                console.log(data);
+                wattData = data;
+            });
+        }
     </script>
     <!-- svelte-ignore missing-declaration -->
     <Navbar></Navbar>
-
-
     <!-- svelte-ignore missing-declaration -->
     <div>
-        <Box    >
+        <Box>
             <div>
                 <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
                 <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
@@ -89,19 +85,11 @@
     
 
 <style>
-    #climate-form-box{
-        width: 300px;
-        border: 1px solid #aaa;
-        border-radius: 2px; 
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        padding: 1em;
-        margin: 0 0 1em 0;
-    }
 
     #climate-header{
         position: relative;
         width: 100%;
-        height: 75px;
+        height: 50%;
         line-height: 75px;
         text-align: center;
         margin: auto;

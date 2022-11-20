@@ -1,14 +1,15 @@
 <script type="typescript">
     import Hamburger from "./Hamburger.svelte";
 
-    export let sidebar = false;
+    let sidebar1 = false;
+    export let sidebar = sidebar1;
 </script>
 
 <!-- svelte-ignore missing-declaration -->
-<header class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2">
+<header class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2 topnav">
     <nav class="flex">
         <h1 id="climate-score-header">Climate Score</h1>
-        <Hamburger bind:open={sidebar}/>
+        <Hamburger bind:open={sidebar1}/>
     </nav>
 </header>
 
@@ -16,7 +17,7 @@
     #climate-score-header{
         position: relative;
         width: 100%;
-        height: 75px;
+        height: 30px;
         line-height: 75px;
         text-align: center;
         font-size: 3.5em;
