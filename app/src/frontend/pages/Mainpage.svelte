@@ -4,6 +4,7 @@
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
         import Hamburger from '../components/Hamburger.svelte';
+        import Navbar from '../components/Navbar.svelte';
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
         //TODO: turn backend into an actual backend
@@ -45,13 +46,10 @@
                   score = data; 
             });
         }
-        
+
     </script>
     <!-- svelte-ignore missing-declaration -->
-    <div id="climate-header" class="topnav">
-        <h1 id="header-text">Climate Score</h1>
-            <Hamburger></Hamburger>
-    </div>
+    <Navbar></Navbar>
 
 
     <!-- svelte-ignore missing-declaration -->

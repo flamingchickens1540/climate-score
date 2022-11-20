@@ -27,7 +27,7 @@
 	}
 	
 	.open svg {
-		transform: scale(0.7)
+		transform: scale(1)
 	}
 	
 	.open #top {
