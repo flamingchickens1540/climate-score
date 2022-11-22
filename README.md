@@ -11,12 +11,12 @@ To start, first create a secrets folder including an api_keys.ts file with api k
 
 Then install run using:
 
-        npm install yarn --global
+    npm install yarn --global
         
 Then run:
 
-        yarn build
+    yarn build
      
 and
 
-        yarn run dev
+    yarn run dev
