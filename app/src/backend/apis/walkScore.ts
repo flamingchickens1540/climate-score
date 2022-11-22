@@ -17,7 +17,7 @@ export async function getPositionStack(address: string): Promise<any> {
 }
 
 export async function getWalkScore (address: string): Promise<number> {
-    const url = address + WALKSCORE_API_KEY;
+    const url = "https://api.walkscore.com/score?format=json&" + address + WALKSCORE_API_KEY;
     const response = await fetch(url);
     const isJSONContentType = response.headers.get('content-type')?.includes('json');
     let data;

@@ -25,7 +25,6 @@ function getWattBuy(address) {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                //api key is not the issue
                 'x-api-key': api_keys_1.WATTBUY_API_KEY,
                 'content-type': 'application/json',
             },

@@ -31,7 +31,7 @@ exports.getPositionStack = getPositionStack;
 function getWalkScore(address) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
-        const url = address + api_keys_1.WALKSCORE_API_KEY;
+        const url = "https://api.walkscore.com/score?format=json&" + address + api_keys_1.WALKSCORE_API_KEY;
         const response = yield fetch(url);
         const isJSONContentType = (_a = response.headers.get('content-type')) === null || _a === void 0 ? void 0 : _a.includes('json');
         let data;

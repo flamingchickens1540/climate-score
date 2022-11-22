@@ -3,7 +3,6 @@
         import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
-        import Hamburger from '../components/Hamburger.svelte';
         import Navbar from '../components/Navbar.svelte';
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
@@ -30,7 +29,7 @@
         //Status: Incomplete
 
         function testWalkScoreData(){
-            getWalkScore("https://apis.walkscore.com/score?format=json&address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
+            getWalkScore("address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
             .then((walkScore) => {
                 console.log(walkScore);
                   score = walkScore;
@@ -43,7 +42,7 @@
             .then((carbon) => {
                 console.log(carbon);
                 wattData = carbon;
-            });
+            });   
         }
     </script>
     <!-- svelte-ignore missing-declaration -->

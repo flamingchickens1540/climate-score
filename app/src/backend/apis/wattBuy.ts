@@ -12,7 +12,6 @@ async function getWattBuy(address: string): Promise<any> {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        //api key is not the issue
       'x-api-key': WATTBUY_API_KEY,
       'content-type': 'application/json',
       },
