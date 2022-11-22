@@ -22,11 +22,11 @@ function getWattBuy(address) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const options = {
+            credential: 'include',
             method: 'GET',
             headers: {
                 accept: 'application/json',
                 'x-api-key': api_keys_1.WATTBUY_API_KEY,
-                'content-type': 'application/json',
             },
             mode: 'no-cors',
         };

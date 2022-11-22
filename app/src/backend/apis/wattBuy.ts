@@ -9,11 +9,11 @@ const SOLARWEIGHT = 1.1;
 //query wattBuy api avg_carbon_footprint
 async function getWattBuy(address: string): Promise<any> {
     const options = {
+      credential: 'include',
       method: 'GET',
       headers: {
         accept: 'application/json',
       'x-api-key': WATTBUY_API_KEY,
-      'content-type': 'application/json',
       },
       mode: 'no-cors' as RequestMode,
     };

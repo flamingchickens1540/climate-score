@@ -7,7 +7,7 @@
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
         //TODO: turn backend into an actual backend
-        //TODO: 
+        //TODO: fix api issues: 403 errors
 
         var score = 0;
         var wattData = 0;
@@ -38,11 +38,25 @@
         ////Gets the watt buy data and displays it on the screen
         //Status: Incomplete
         function testWattBuyData(){
+            /*
             getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
             .then((carbon) => {
                 console.log(carbon);
                 wattData = carbon;
             });   
+            */
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    'x-api-key': 'rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh'
+                }
+            };
+
+            fetch('https://apis.wattbuy.com/v3/electricity/carbon-footprint', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
         }
     </script>
     <!-- svelte-ignore missing-declaration -->
