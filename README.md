@@ -1,4 +1,4 @@
-# climate-score
+# Climate Score
 A website to calculate the environmental impact of living in a certain house, and offer potential improvements.
 
 The score will be give out of one hundred, with a lower score indicating a larger negative enviornmental impact, while a higher score indicates a lower impact.
