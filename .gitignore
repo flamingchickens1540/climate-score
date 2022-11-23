@@ -1,5 +1,5 @@
-/node_modules/
-/public/build/
-/secrets
+/app/node_modules/
+/app/public/build/
+/app/secrets
 .vscode
 .DS_Store
