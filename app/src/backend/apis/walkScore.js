@@ -14,8 +14,12 @@ exports.getWalkScore = exports.getPositionStack = void 0;
 const api_keys_1 = require("../../secrets/api_keys");
 function getPositionStack(address) {
     return __awaiter(this, void 0, void 0, function* () {
-        const url = `http://api.positionstack.com/v1/forward?access_key=${api_keys_1.POSITIONSTACK_API_KEY}&query=${address}&limit=1`;
-        const response = yield fetch(url);
+        const options = {
+            access_key: api_keys_1.POSITIONSTACK_API_KEY,
+            query: address,
+        };
+        const url = `http://api.positionstack.com/v1/forward`;
+        const response = yield fetch(url, options);
         const data = yield response.json();
         if (Object.keys(data.data).length === 0 || data.data.results.latitude === null || data.data.results.longitude === null) {
             console.log(data.data);

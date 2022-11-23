@@ -4,8 +4,12 @@ import { POSITIONSTACK_API_KEY, WALKSCORE_API_KEY } from '../../secrets/api_keys
 
 
 export async function getPositionStack(address: string): Promise<any> {
-    const url = `http://api.positionstack.com/v1/forward?access_key=${POSITIONSTACK_API_KEY}&query=${address}&limit=1`;
-    const response = await fetch(url);
+    const options = {
+        access_key : POSITIONSTACK_API_KEY,
+        query: address,
+    } as RequestInit
+    const url = `http://api.positionstack.com/v1/forward`;
+    const response = await fetch(url, options);
     const data = await response.json();
     if(Object.keys(data.data).length === 0 || data.data.results.latitude === null || data.data.results.longitude === null) {
         console.log(data.data);

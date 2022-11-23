@@ -17,7 +17,7 @@ const wattBuy_1 = require("./apis/wattBuy");
 function getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal) {
     return __awaiter(this, void 0, void 0, function* () {
         //Gets positionstack data to get lat and long for walkscore api
-        const positionstackAddress = address + street + kindOfStreet + cardinal + cityName + state;
+        const positionstackAddress = address + " " + street + " " + kindOfStreet + " " + cardinal + " " + cityName + " " + state;
         //longitude and latitude are needed for walkscore api
         const lon = (yield (0, walkScore_2.getPositionStack)(positionstackAddress)).data.results.longitude;
         const lat = (yield (0, walkScore_2.getPositionStack)(positionstackAddress)).data.results.latitude;

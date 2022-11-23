@@ -6,7 +6,7 @@ import { getEnergyScore, getAvgCarbonFootprint } from "./apis/wattBuy";
 export async function getClimateScore (address: string, cityName: string, state: string, zip: string, street: string, kindOfStreet: string, cardinal: string): Promise<number> {
 
     //Gets positionstack data to get lat and long for walkscore api
-    const positionstackAddress = address + street + kindOfStreet + cardinal + cityName + state;
+    const positionstackAddress = address + " " + street + " " + kindOfStreet + " " + cardinal + " " + cityName + " " + state;
 
     //longitude and latitude are needed for walkscore api
     const lon = (await getPositionStack(positionstackAddress)).data.results.longitude;
