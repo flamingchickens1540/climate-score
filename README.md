@@ -15,11 +15,8 @@ Then install run using:
 
 Install Dependencies:
 
-    yarn add
+    yarn add yarn.lock
         
-Then run:
-
-    yarn build
      
 and
 
