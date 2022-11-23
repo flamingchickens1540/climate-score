@@ -53,7 +53,7 @@
                 }
             };
 
-            fetch('https://apis.wattbuy.com/v3/electricity/carbon-footprint', options)
+            fetch('https://apis.wattbuy.com/v3/electricity/carbon-footprint?address=1515&city=Portland&state=Or&zip=97202', options)
             .then(response => response.json())
             .then(response => console.log(response))
             .catch(err => console.error(err));
