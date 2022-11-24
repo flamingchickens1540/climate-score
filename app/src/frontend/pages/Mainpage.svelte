@@ -4,13 +4,15 @@
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
         import Navbar from '../components/Navbar.svelte';
+        import ClimateScoreDisplay from '../components/ClimateScoreDisplay.svelte';
+        import { renderForm } from '../components/ClimateForm.svelte';
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
         //TODO: turn backend into an actual backend
         //TODO: fix api issues: 403 errors
 
-        var score = 0;
-        var wattData = 0;
+        export var walkScore = 0;
+        export var wattData = 0;
 
         //Test Function
         //Complete 
@@ -32,7 +34,7 @@
             getWalkScore("address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
             .then((walkScore) => {
                 console.log(walkScore);
-                  score = walkScore;
+                  walkScore = walkScore;
             });
         }
         ////Gets the watt buy data and displays it on the screen
@@ -55,7 +57,10 @@
 
             fetch('https://apis.wattbuy.com/v3/electricity/carbon-footprint?address=1515&city=Portland&state=Or&zip=97202', options)
             .then(response => response.json())
-            .then(response => console.log(response))
+            .then(response => {
+                console.log(response);
+                wattData = response;
+            })
             .catch(err => console.error(err));
         }
     </script>
@@ -65,13 +70,21 @@
     <div>
         <Box>
             <div>
-                <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-                <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
-                <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
-                <button id="test" on:click={test}>test</button>
-                <div id="address-data">
-                    <ClimateForm action="POST" id="address-form"></ClimateForm>
-                </div>
+                {#await form then form}
+                    {#if form}
+                    <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+                    <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+                    <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
+                    <button id="test" on:click={test}>test</button>
+                    <div id="address-data">
+                        <ClimateForm action="POST" id="address-form"></ClimateForm>
+                    </div>
+                    {:else}
+                    <div id="address-data">
+                        <ClimateScoreDisplay></ClimateScoreDisplay>
+                    </div>
+                    {/if}
+                {/await}
             </div>
         </Box>
     </div>

@@ -1,5 +1,7 @@
 <script lang="typescript">
 	import { getClimateScore } from '../../backend/climateScore';
+	export let renderForm: Boolean;
+	export let climateScore;
 	//Get WalkScore Data
 	async function onSubmit(form) {	
 		const formData = new FormData(form.target);
@@ -11,9 +13,12 @@
 			const cityName = formData.get('city')?.toString() ?? "";
 			const state = formData.get('state')?.toString() ?? "";
 			const zip = formData.get('zip')?.toString() ?? "";
-			const climateScore = await getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal);
-			return climateScore;
+			const cliScore = await getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal);
+			renderForm = true;
+			climateScore = cliScore;
+			return cliScore;
 		}else{
+			renderForm = false;
 			throw new Error("Please fill out all fields");
 		}
 	}
