@@ -1,11 +1,11 @@
-    <script lang="ts">
+    <script lang="ts" context="module">
         import { getWalkScore } from '../../backend/apis/walkScore';
         import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
         import Navbar from '../components/Navbar.svelte';
         import ClimateScoreDisplay from '../components/ClimateScoreDisplay.svelte';
-        import { renderForm } from '../components/ClimateForm.svelte';
+        import { returnRenderForm } from '../components/ClimateForm.svelte';
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
         //TODO: turn backend into an actual backend
@@ -63,6 +63,7 @@
             })
             .catch(err => console.error(err));
         }
+        let renderForm = returnRenderForm();
     </script>
     <!-- svelte-ignore missing-declaration -->
     <Navbar></Navbar>
@@ -72,17 +73,17 @@
             <div>
                 {#await renderForm}
                     {#if renderForm}
-                    <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-                    <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
-                    <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
-                    <button id="test" on:click={test}>test</button>
-                    <div id="address-data">
-                        <ClimateForm action="POST" id="address-form"></ClimateForm>
-                    </div>
+                        <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+                        <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+                        <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
+                        <button id="test" on:click={test}>test</button>
+                        <div id="address-data">
+                            <ClimateForm action="POST" id="address-form"></ClimateForm>
+                        </div>
                     {:else}
-                    <div id="address-data">
-                        <ClimateScoreDisplay></ClimateScoreDisplay>
-                    </div>
+                        <div id="address-data">
+                            <ClimateScoreDisplay></ClimateScoreDisplay>
+                        </div>
                     {/if}
                 {/await}
             </div>

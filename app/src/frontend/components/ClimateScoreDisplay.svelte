@@ -1,6 +1,6 @@
-<script type="ts">
-import { climateScore } from "./ClimateForm.svelte";
-let score = climateScore;
+<script type="ts" context="module">
+    import { returnClimateScore } from "./ClimateForm.svelte";
+    let score = returnClimateScore();
 </script>
 
 <div id="score-display">

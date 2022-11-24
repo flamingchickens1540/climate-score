@@ -1,7 +1,7 @@
-<script lang="typescript">
+<script lang="typescript" context="module">
 	import { getClimateScore } from '../../backend/climateScore';
-	export let renderForm: Boolean;
-	export let climateScore;
+	export let renderForm = true;
+	export let climateScore = 0;
 	//Get WalkScore Data
 	async function onSubmit(form) {	
 		const formData = new FormData(form.target);
@@ -21,6 +21,13 @@
 			renderForm = false;
 			throw new Error("Please fill out all fields");
 		}
+	}
+
+	export function returnRenderForm(){
+		return renderForm;
+	}
+	export function returnClimateScore(){
+		return climateScore;
 	}
 </script>
 
