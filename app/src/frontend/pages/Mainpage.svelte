@@ -70,8 +70,8 @@
     <div>
         <Box>
             <div>
-                {#await form then form}
-                    {#if form}
+                {#await renderForm}
+                    {#if renderForm}
                     <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
                     <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
                     <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
@@ -98,7 +98,7 @@
                 <p></p>
             {/if}
         {/await}
-        {#await score then score}
+        {#await walkScore then score}
             {#if score!=0}
                 <p>Score: {score.toString()}</p>
             {:else}
