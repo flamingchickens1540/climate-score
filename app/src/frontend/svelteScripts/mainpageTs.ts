@@ -1,7 +1,7 @@
 import { getWalkScore } from '../../backend/apis/walkScore';
 import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
-import ClimateForm from '../components/ClimateForm.svelte';
-import Box from '../components/Box.svelte';
+// import ClimateForm from '../components/ClimateForm.svelte';
+// import Box from '../components/Box.svelte';
 //TODO: figure out why importation isn't working even though it recognizes the file pathname
 //for some reason it recognizes the file path and the function, but cannot resolve the import
 //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
