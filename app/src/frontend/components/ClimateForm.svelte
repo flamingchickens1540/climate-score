@@ -14,11 +14,11 @@
 			const state = formData.get('state')?.toString() ?? "";
 			const zip = formData.get('zip')?.toString() ?? "";
 			const cliScore = await getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal);
-			renderForm = true;
+			renderForm = false;
 			climateScore = cliScore;
 			return cliScore;
 		}else{
-			renderForm = false;
+			renderForm = true;
 			throw new Error("Please fill out all fields");
 		}
 	}

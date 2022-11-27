@@ -8,18 +8,27 @@ const SOLARWEIGHT = 1.1;
 
 //query wattBuy api avg_carbon_footprint
 async function getWattBuy(address: string): Promise<any> {
-    const options = {
-      credential: 'include',
-      method: 'GET',
-      headers: {
+  const options = {
+    method: 'GET',
+    headers: {
         accept: 'application/json',
-      'x-api-key': WATTBUY_API_KEY,
-      },
-      mode: 'no-cors' as RequestMode,
-    };
+        'x-api-key': 'rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh'
+    },
+    mode: 'no-cors' as RequestMode,
+  };
+
+  fetch('address=1515&city=Portland&state=Or&zip=97202', options)
+      .then(response => response.json())
+      .then(response => {
+          console.log(response);
+          return response;
+      })
+      .catch(err => console.error(err));
+
+
 
     const url = `https://apis.wattbuy.com/v3/electricity/carbon-footprint?${address}`;
-    const response = await fetch(url, options);
+    const response = await fetch(url, options)
     const isJSONContentType = response.headers.get('content-type')?.includes('json');
     let data;
     if(isJSONContentType){
@@ -39,6 +48,7 @@ async function getWattBuy(address: string): Promise<any> {
 }
 
 export async function getAvgCarbonFootprint (address: string): Promise<number> {
+
     const wattBuy = await getWattBuy(address);
     const avg_carbon_foot_print:Promise<number> = wattBuy.data.avg_carbon_foot_print;
     console.log('avg_carbon_foot_print: ' + avg_carbon_foot_print);

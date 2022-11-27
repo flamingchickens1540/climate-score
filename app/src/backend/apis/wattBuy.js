@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEnergyScore = exports.getAvgCarbonFootprint = void 0;
-const api_keys_1 = require("../../secrets/api_keys");
 const COALWEIGHT = -2;
 const GASWEIGHT = -1;
 const NUCLEARWEIGHT = .5;
@@ -22,14 +21,20 @@ function getWattBuy(address) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const options = {
-            credential: 'include',
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                'x-api-key': api_keys_1.WATTBUY_API_KEY,
+                'x-api-key': 'rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh'
             },
             mode: 'no-cors',
         };
+        fetch('address=1515&city=Portland&state=Or&zip=97202', options)
+            .then(response => response.json())
+            .then(response => {
+            console.log(response);
+            return response;
+        })
+            .catch(err => console.error(err));
         const url = `https://apis.wattbuy.com/v3/electricity/carbon-footprint?${address}`;
         const response = yield fetch(url, options);
         const isJSONContentType = (_a = response.headers.get('content-type')) === null || _a === void 0 ? void 0 : _a.includes('json');

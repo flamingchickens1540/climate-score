@@ -1,6 +1,6 @@
-    <script lang="ts" context="module">
+    <script lang="ts">
         import { getWalkScore } from '../../backend/apis/walkScore';
-        import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
+        //import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
         import ClimateForm from '../components/ClimateForm.svelte';
         import Box from '../components/Box.svelte';
         import Navbar from '../components/Navbar.svelte';
