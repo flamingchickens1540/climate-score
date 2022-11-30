@@ -13,6 +13,7 @@ async function onSubmit(form : any) {
 		const climateScore = await getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal);
 		return climateScore;
 	}else{
+		alert("Please fill out the form");
 		throw new Error("Please fill out all fields");
 	}
 }

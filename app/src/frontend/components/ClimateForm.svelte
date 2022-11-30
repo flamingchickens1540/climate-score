@@ -22,7 +22,6 @@
 			throw new Error("Please fill out all fields");
 		}
 	}
-
 	export function returnRenderForm(){
 		return renderForm;
 	}

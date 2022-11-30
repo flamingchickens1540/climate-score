@@ -9,8 +9,7 @@
         //for some reason it recognizes the file path and the function, but cannot resolve the import
         //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
         //TODO: turn backend into an actual backend
-        //TODO: fix api issues: 403 errors
-
+        //TODO: fix api issues: 503 errors
         export var walkScore = 0;
         export var wattData = 0;
 
@@ -20,7 +19,6 @@
         function test(){
             console.log("test");
         }
- 
         //Remove the WattBuy Data from the Screen 
         //Status: Complete
         function removeWattBuyData(){
@@ -71,21 +69,19 @@
     <div>
         <Box>
             <div>
-                {#await renderForm}
-                    {#if renderForm}
-                        <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-                        <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
-                        <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
-                        <button id="test" on:click={test}>test</button>
-                        <div id="address-data">
-                            <ClimateForm action="POST" id="address-form"></ClimateForm>
-                        </div>
-                    {:else}
-                        <div id="address-data">
-                            <ClimateScoreDisplay></ClimateScoreDisplay>
-                        </div>
-                    {/if}
-                {/await}
+                {#if renderForm == true}
+                    <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+                    <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+                    <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
+                    <button id="test" on:click={test}>test</button>
+                    <div id="address-data">
+                        <ClimateForm action="POST" id="address-form"></ClimateForm>
+                    </div>
+                {:else}
+                    <div id="address-data">
+                        <ClimateScoreDisplay></ClimateScoreDisplay>
+                    </div>
+                {/if}
             </div>
         </Box>
     </div>

@@ -27,6 +27,7 @@ function onSubmit(form) {
             return climateScore;
         }
         else {
+            alert("Please fill out the form");
             throw new Error("Please fill out all fields");
         }
     });
