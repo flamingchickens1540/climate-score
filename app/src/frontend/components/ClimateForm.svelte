@@ -2,9 +2,10 @@
 	import { getClimateScore } from '../../backend/climateScore';
 	export let renderForm = true;
 	export let climateScore = 0;
+
 	//Get WalkScore Data
-	async function onSubmit(form) {	
-		const formData = new FormData(form.target);
+	async function onSubmit(form: HTMLFormElement)  {	
+		const formData = new FormData(form);
 		if(formData.get('address') != null || formData.get('cityName') != null || formData.get('state') != null || formData.get('zip') != null || formData.get('street') != null || formData.get('kindOfStreet') != null || formData.get('cardinal') != null){
 			const address = formData.get('address')?.toString() ?? "";
 			const street = formData.get('street')?.toString().split(" ")[0] ?? "";
