@@ -1,26 +1,32 @@
-<script lang="typescript" context="module">
+<script lang="ts" context="module">
 	import { getClimateScore } from '../../backend/climateScore';
+	import type { AddressData } from '../../types/types';
 	export let renderForm = true;
 	export let climateScore = 0;
 
 	//Get WalkScore Data
-	async function onSubmit(form: HTMLFormElement)  {	
-		const formData = new FormData(form);
-		if(formData.get('address') != null || formData.get('cityName') != null || formData.get('state') != null || formData.get('zip') != null || formData.get('street') != null || formData.get('kindOfStreet') != null || formData.get('cardinal') != null){
-			const address = formData.get('address')?.toString() ?? "";
-			const street = formData.get('street')?.toString().split(" ")[0] ?? "";
-			const kindOfStreet = formData.get('street')?.toString().split(" ")[1] ?? "";
-			const cardinal = formData.get('cardinal')?.toString() ?? "";
-			const cityName = formData.get('city')?.toString() ?? "";
-			const state = formData.get('state')?.toString() ?? "";
-			const zip = formData.get('zip')?.toString() ?? "";
-			const cliScore = await getClimateScore(address, cityName, state, zip, street, kindOfStreet, cardinal);
+	async function onSubmit(form: HTMLFormElement | SubmitEvent)  {	
+		const formData = form;
+		if(formData instanceof HTMLFormElement) {
+			if(formData.get('address') != null || formData.get('cityName') != null || formData.get('state') != null || formData.get('zip') != null || formData.get('street') != null || formData.get('kindOfStreet') != null || formData.get('cardinal') != null){
+			
+			const data: AddressData = {
+				address: formData.get('address')?.toString() ?? "",
+				street: formData.get('street')?.toString().split(" ")[0] ?? "",
+				kindOfStreet: formData.get('street')?.toString().split(" ")[1] ?? "",
+				cardinal: formData.get('cardinal')?.toString() ?? "",
+				cityName: formData.get('city')?.toString() ?? "",
+				state: formData.get('state')?.toString() ?? "",
+				zip: formData.get('zip')?.toString() ?? "",
+			}
+			const cliScore = await getClimateScore(data);
 			renderForm = false;
 			climateScore = cliScore;
 			return cliScore;
 		}else{
 			renderForm = true;
 			throw new Error("Please fill out all fields");
+		}
 		}
 	}
 	export function returnRenderForm(){
@@ -29,20 +35,23 @@
 	export function returnClimateScore(){
 		return climateScore;
 	}
+	if(document.getElementsByTagName('form').length > 0){
+		document.getElementById("submit")?.removeAttribute("disabled");
+	}
 </script>
 
 <form on:submit|preventDefault={onSubmit}>
 	<div>
 		<label for="name">Address</label>
-		<input name="address" type="text" placeholder="1234">
+		<input name="address" type="text" placeholder="1234" >
 	</div>
 	<div>
 		<label for="name">Street</label>
-		<input name="street" type="text" placeholder="IDONTKNOW Avenue">
+		<input name="street" type="text" placeholder="IDONTKNOW Avenue" id="Street">
 	</div>
 	<div>
 		<label for="name">City</label>
-		<input name="city" type="text" placeholder="portland">
+		<input name="city" type="text" placeholder="portland" id="City">
 	</div>
 	<div>
 		<label for="name">State</label>
@@ -52,7 +61,7 @@
 		<label for="name">Zip Code</label>
 		<input name="zip" type="text" placeholder="12345">
 	</div>
-	<button type="submit">Submit</button>
+	<button type="submit" disabled id="submit">Submit</button>
 </form>
 
 <style>

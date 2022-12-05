@@ -75,7 +75,7 @@
                     <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
                     <button id="test" on:click={test}>test</button>
                     <div id="address-data">
-                        <ClimateForm action="POST" id="address-form"></ClimateForm>
+                        <ClimateForm></ClimateForm>
                     </div>
                 {:else}
                     <div id="address-data">
