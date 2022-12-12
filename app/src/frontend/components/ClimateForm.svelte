@@ -8,7 +8,7 @@
 	async function onSubmit(form: HTMLFormElement | SubmitEvent)  {	
 		const formData = form;
 		if(formData instanceof HTMLFormElement) {
-			if(formData.get('address') != null || formData.get('cityName') != null || formData.get('state') != null || formData.get('zip') != null || formData.get('street') != null || formData.get('kindOfStreet') != null || formData.get('cardinal') != null){
+			if(formData.get('address') != null && formData.get('cityName') != null && formData.get('state') != null && formData.get('zip') != null && formData.get('street') != null && formData.get('kindOfStreet') != null && formData.get('cardinal') != null){
 			
 			const data: AddressData = {
 				address: formData.get('address')?.toString() ?? "",
@@ -23,10 +23,11 @@
 			renderForm = false;
 			climateScore = cliScore;
 			return cliScore;
-		}else{
-			renderForm = true;
-			throw new Error("Please fill out all fields");
-		}
+
+			} else{
+				renderForm = true;
+				throw new Error("Please fill out all fields");
+			}
 		}
 	}
 	export function returnRenderForm(){
