@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import { getClimateScore } from '../../backend/climateScore';
-	import type { AddressData } from '../../types/types';
+	import type { AddressData }from '../../types/types';
 	export let renderForm = true;
 	export let climateScore = 0;
 
@@ -11,7 +11,7 @@
 			if(formData.get('address') != null && formData.get('cityName') != null && formData.get('state') != null && formData.get('zip') != null && formData.get('street') != null && formData.get('kindOfStreet') != null && formData.get('cardinal') != null){
 			
 			const data: AddressData = {
-				address: formData.get('address')?.toString() ?? "",
+				address: formData.get('address')?.toString() ?? "",	
 				street: formData.get('street')?.toString().split(" ")[0] ?? "",
 				kindOfStreet: formData.get('street')?.toString().split(" ")[1] ?? "",
 				cardinal: formData.get('cardinal')?.toString() ?? "",
