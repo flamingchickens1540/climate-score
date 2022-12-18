@@ -42,6 +42,7 @@
 		display: inline-block;
 		text-align: center;
 		position: relative;
+		padding: 0;
     }
 
     form > div{
