@@ -1,5 +1,5 @@
 <script type="ts" context="module">
-    import { returnClimateScore } from "./ClimateForm.svelte";
+    import { returnClimateScore } from "../svelteScripts/ClimateFormTs";
     let score = returnClimateScore();
 </script>
 
