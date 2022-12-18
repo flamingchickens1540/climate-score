@@ -41,6 +41,7 @@
 		margin-right: 50px;
 		display: inline-block;
 		text-align: center;
+		position: relative;
     }
 
     form > div{
