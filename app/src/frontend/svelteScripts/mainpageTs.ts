@@ -4,39 +4,34 @@ import ClimateForm from '../components/ClimateForm.svelte';
 import Box from '../components/Box.svelte';
 import Navbar from '../components/Navbar.svelte';
 import ClimateScoreDisplay from '../components/ClimateScoreDisplay.svelte';
-import { returnRenderForm } from '../svelteScripts/ClimateFormTs';
 //for some reason it recognizes the file path and the function, but cannot resolve the import
 //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
 //TODO: turn backend into an actual backend
 //TODO: fix api issues: 503 errors
-export var walkScore = 0;
-export var wattData = 0;
+import { walkScore } from '../../common/store';
+import { wattData } from '../../common/store';
+import { subscribe } from 'svelte/internal';
+import { renderForm } from '../../common/store';
 
-//Test Function
-//Complete 
-//TODO: Remove
-function test(){
-    console.log("test");
-}
 //Remove the WattBuy Data from the Screen 
 //Status: Complete
-function removeWattBuyData(){
-    wattData = 0;
+export function removeWattBuyData(){
+    wattData.update(() => 0);
 }
 
 //gets the walkscore data and displays it on the screen
 //Status: Incomplete
 
-function testWalkScoreData(){
+export function testWalkScoreData(){
     getWalkScore("address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
     .then((walkScore) => {
         console.log(walkScore);
-          walkScore = walkScore;
+        walkScore = walkScore;
     });
 }
 ////Gets the watt buy data and displays it on the screen
 //Status: Incomplete
-function testWattBuyData(){
+export function testWattBuyData(){
     /*
     getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
     .then((carbon) => {
@@ -56,8 +51,8 @@ function testWattBuyData(){
     .then(response => response.json())
     .then(response => {
         console.log(response);
-        wattData = response;
+        wattData.update(response => response);
     })
     .catch(err => console.error(err));
 }
-let renderForm = returnRenderForm();
+
