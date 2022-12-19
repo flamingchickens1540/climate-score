@@ -35,8 +35,8 @@
 		display: flex;
 		flex-direction: column;
 		width: 300px;
-		margin-top: 50px;
-		margin-bottom: 50px;
+		margin-top: 10px;
+		margin-bottom: 10px;
 		margin-left: 50px;
 		margin-right: 50px;
 		display: inline-block;

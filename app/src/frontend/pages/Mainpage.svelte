@@ -69,7 +69,7 @@ let renderForm = returnRenderForm();
     <!-- svelte-ignore missing-declaration -->
     <div>
         <Box>
-            <div>
+            <div id="box">
                 {#if renderForm == true}
                     <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
                     <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
@@ -109,6 +109,11 @@ let renderForm = returnRenderForm();
     
 
 <style>
+
+    #box{
+        
+        position: relative  ;
+    }
 
     #climate-header{
         position: relative;
