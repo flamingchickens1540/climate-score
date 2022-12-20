@@ -6,15 +6,12 @@
     import Box from "../components/Box.svelte";
     import { renderForm, walkScore, wattData } from "../../common/store";
 
-    let wScore;
-    walkScore.subscribe(value =>{
-        wScore = value;
-    })
-
-    let render1:boolean;
-    renderForm.subscribe(value =>{
-        render1 = value;
-    });
+    let wScore: number;
+    let wData: number;
+    let rForm;
+    walkScore.subscribe(value => {wScore = value});
+    wattData.subscribe(value => {wData = value});
+    renderForm.subscribe(value => {rForm = value});
 </script>
     <!-- svelte-ignore missing-declaration -->
     <Navbar></Navbar>
@@ -22,7 +19,7 @@
     <div>
         <Box>
             <div id="box">
-                {#if $render1 == true}
+                {#if $renderForm == true}
                     <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
                     <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
                     <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
@@ -40,20 +37,16 @@
 
 
     <div>
-        {#await $wattData then value}
-            {#if value != 0}
-                <p>{value.toString()}</p>
-            {:else}
-                <p></p>
-            {/if}
-        {/await}
-        {#await $walkScore then score}
-            {#if score != 0}
-                <p>Score: {score.toString()}</p>
-            {:else}
-                <p></p>
-            {/if}
-        {/await}
+        {#if wScore != 0}
+            <p>{wScore.toString()}</p>
+        {:else}
+            <p></p>
+        {/if}
+        {#if wData != 0}
+            <p>Score: {wData.toString()}</p>
+        {:else}
+            <p></p>
+        {/if}
     </div>
 
     <div id="climate-footer"></div>
