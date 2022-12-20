@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc; rollup -c",
-    "dev": "tsc; rollup -c -w",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "dev-backend": "yarn build; nodemon app.js",
     "start": "node app.js"
   },
