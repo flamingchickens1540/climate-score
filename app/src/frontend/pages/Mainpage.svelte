@@ -2,8 +2,14 @@
     import { removeWattBuyData, testWalkScoreData, testWattBuyData } from "../svelteScripts/mainpageTs";
     import Navbar from "../components/Navbar.svelte";
     import ClimateForm from "../components/ClimateForm.svelte";
+    import ClimateScoreDisplay from "../components/ClimateScoreDisplay.svelte";
     import Box from "../components/Box.svelte";
-    import { renderForm } from "../../common/store";
+    import { renderForm, walkScore, wattData } from "../../common/store";
+
+    let wScore;
+    walkScore.subscribe(value =>{
+        wScore = value;
+    })
 
     let render1:boolean;
     renderForm.subscribe(value =>{
