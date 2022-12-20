@@ -1,4 +1,4 @@
-<script lang="ts" context="module" src="../svelteScripts/ClimateFormTs">
+<script lang="ts" src="../svelteScripts/ClimateFormTs">
 	import { onSubmit } from "../svelteScripts/ClimateFormTs"
 </script>
 

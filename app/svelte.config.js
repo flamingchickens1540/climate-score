@@ -1,4 +1,4 @@
-const sveltePreprocess = require('svelte-preprocess');
+import sveltePreprocess from 'svelte-preprocess';
 
 const preprocessOptions = {
     sourceMap: true, // "you would always want sourcemaps for the IDE" – dummdidumm
@@ -11,7 +11,7 @@ const preprocessOptions = {
     }
 };
 
-module.exports = {
+export default {
     preprocess: sveltePreprocess(preprocessOptions),
 
     // Export this to allow rollup.config.js to inherit the same preprocess options.

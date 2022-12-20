@@ -1,25 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.wattData = exports.walkScore = void 0;
+exports.testWattBuyData = exports.testWalkScoreData = exports.removeWattBuyData = void 0;
 const walkScore_1 = require("../../backend/apis/walkScore");
-const ClimateForm_svelte_1 = require("../components/ClimateForm.svelte");
-//for some reason it recognizes the file path and the function, but cannot resolve the import
-//TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
-//TODO: turn backend into an actual backend
-//TODO: fix api issues: 503 errors
-exports.walkScore = 0;
-exports.wattData = 0;
-//Test Function
-//Complete 
-//TODO: Remove
-function test() {
-    console.log("test");
-}
+const store_1 = require("../../common/store");
 //Remove the WattBuy Data from the Screen 
 //Status: Complete
 function removeWattBuyData() {
-    exports.wattData = 0;
+    store_1.wattData.update(() => 0);
 }
+exports.removeWattBuyData = removeWattBuyData;
 //gets the walkscore data and displays it on the screen
 //Status: Incomplete
 function testWalkScoreData() {
@@ -29,6 +18,7 @@ function testWalkScoreData() {
         walkScore = walkScore;
     });
 }
+exports.testWalkScoreData = testWalkScoreData;
 ////Gets the watt buy data and displays it on the screen
 //Status: Incomplete
 function testWattBuyData() {
@@ -50,8 +40,8 @@ function testWattBuyData() {
         .then(response => response.json())
         .then(response => {
         console.log(response);
-        exports.wattData = response;
+        store_1.wattData.update(response => response);
     })
         .catch(err => console.error(err));
 }
-let renderForm = (0, ClimateForm_svelte_1.returnRenderForm)();
+exports.testWattBuyData = testWattBuyData;

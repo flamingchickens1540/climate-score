@@ -55,4 +55,3 @@ export function testWattBuyData(){
     })
     .catch(err => console.error(err));
 }
-

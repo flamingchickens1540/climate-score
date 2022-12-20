@@ -10,10 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.returnClimateScore = exports.returnRenderForm = exports.climateScore = exports.renderForm = void 0;
+exports.onSubmit = void 0;
 const climateScore_1 = require("../../backend/climateScore");
-exports.renderForm = true;
-exports.climateScore = 0;
+const store_1 = require("../../common/store");
+const store_2 = require("../../common/store");
 //Get WalkScore Data
 function onSubmit(form) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
@@ -31,25 +31,18 @@ function onSubmit(form) {
                     zip: (_p = (_o = formData.get('zip')) === null || _o === void 0 ? void 0 : _o.toString()) !== null && _p !== void 0 ? _p : "",
                 };
                 const cliScore = yield (0, climateScore_1.getClimateScore)(data);
-                exports.renderForm = false;
-                exports.climateScore = cliScore;
+                store_2.renderForm.update(() => false);
+                store_1.climateScore.update(() => cliScore);
                 return cliScore;
             }
             else {
-                exports.renderForm = true;
+                store_2.renderForm.update(() => true);
                 throw new Error("Please fill out all fields");
             }
         }
     });
 }
-function returnRenderForm() {
-    return exports.renderForm;
-}
-exports.returnRenderForm = returnRenderForm;
-function returnClimateScore() {
-    return exports.climateScore;
-}
-exports.returnClimateScore = returnClimateScore;
+exports.onSubmit = onSubmit;
 if (document.getElementsByTagName('form').length > 0) {
     (_a = document.getElementById("submit")) === null || _a === void 0 ? void 0 : _a.removeAttribute("disabled");
 }

@@ -1,8 +1,8 @@
-<script lang="ts" context="module">
+<script lang="ts">
     import { climateScore } from "../../common/store";
     
 
-    let score:number;
+    let score: number;
     climateScore.subscribe(value =>{
         if(value != null) {
             score = value;
