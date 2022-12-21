@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" type="module">
   import { removeWattBuyData, testWalkScoreData, testWattBuyData } from "./svelteScripts/mainpageTs";
   import Navbar from "./lib/Navbar.svelte";
   import ClimateForm from "./lib/ClimateForm.svelte";
