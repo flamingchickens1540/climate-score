@@ -1,4 +1,5 @@
-import { Writable, writable , Readable, readable} from 'svelte/store';
+import { writable , readable} from 'svelte/store';
+import type { Readable, Writable } from 'svelte/store';
 
 export var walkScore:Writable<number> = writable(0);
 export var wattData:Writable<number> = writable(0);

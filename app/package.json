@@ -1,43 +1,27 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "climate3",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "dev-backend": "yarn build; nodemon app.js",
-    "start": "node app.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@sveltejs/vite-plugin-svelte": "^2.0.0",
     "@tsconfig/svelte": "^3.0.0",
-    "@types/jquery": "^3.5.14",
-    "nodemon": "^2.0.20",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.53.1",
-    "svelte-check": "^2.10.2",
-    "svelte-preprocess": "^5.0.0",
-    "ts-loader": "^9.4.1",
-    "typescript": "^4.9.4"
+    "svelte": "^3.54.0",
+    "svelte-check": "^2.10.0",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
   },
   "dependencies": {
-    "@rollup/plugin-typescript": "^10.0.1",
-    "axios": "^1.1.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "ng-process-env": "^14.0.3",
-    "preprocess": "^3.2.0",
-    "sirv-cli": "^2.0.0",
-    "svelte-forms": "^2.3.1",
-    "svelte-forms-lib": "^2.0.1",
-    "types": "^0.1.1",
-    "webpack": "^5.75.0",
-    "yarn.lock": "^0.0.1-security"
+    "path": "^0.12.7",
+    "sass": "^1.57.1",
+    "scss": "^0.2.4",
+    "svelte-preprocess": "^5.0.0"
   }
 }

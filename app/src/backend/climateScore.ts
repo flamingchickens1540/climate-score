@@ -1,4 +1,4 @@
-import { AddressData } from "../types/types";
+import type { AddressData } from "../common/types";
 import { getWalkScore } from "./apis/walkScore";
 import { getPositionStack } from "./apis/walkScore";
 import { getEnergyScore, getAvgCarbonFootprint } from "./apis/wattBuy";

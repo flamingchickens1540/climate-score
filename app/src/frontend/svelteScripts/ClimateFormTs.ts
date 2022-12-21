@@ -1,5 +1,5 @@
 import { getClimateScore } from '../../backend/climateScore';
-import type { AddressData } from '../../types/types';
+import type { AddressData } from '../../common/types';
 
 import { climateScore } from '../../common/store';
 import { renderForm } from '../../common/store';

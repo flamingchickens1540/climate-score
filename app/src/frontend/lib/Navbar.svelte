@@ -1,8 +1,8 @@
-<script type="typescript">
+<script type="ts">
     import Hamburger from "./Hamburger.svelte";
 
     let sidebar1 = false;
-    export let sidebar = sidebar1;
+    //export let sidebar = sidebar1;
 </script>
 
 <!-- svelte-ignore missing-declaration -->
