@@ -13,7 +13,7 @@
   wattData.subscribe(value => {wData = value});
   renderForm.subscribe(value => {rForm = value});
 </script>
-  <title>LET'S GO!</title>
+  <title>Climate Score</title>
   <!-- svelte-ignore missing-declaration -->
   <Navbar></Navbar>
   <!-- svelte-ignore missing-declaration -->
