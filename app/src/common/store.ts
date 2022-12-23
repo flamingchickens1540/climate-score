@@ -1,8 +1,8 @@
-import { writable , readable} from 'svelte/store';
-import type { Readable, Writable } from 'svelte/store';
+import { writable } from 'svelte/store';
+import type { Writable } from 'svelte/store';
 
-export var walkScore:Writable<number> = writable(0);
-export var wattData:Writable<number> = writable(0);
+export let walkScore:Writable<number> = writable(0);
+export let wattData:Writable<number> = writable(0);
 
 export let renderForm:Writable<boolean> = writable(true);
 export let climateScore:Writable<number> = writable(0);

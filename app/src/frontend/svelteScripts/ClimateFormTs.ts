@@ -23,12 +23,14 @@ export async function onSubmit(form: HTMLFormElement | SubmitEvent)  {
 			renderForm.update(() => false);
 			climateScore.update(() => cliScore);
 			return cliScore;
+			
 		}else{
 			renderForm.update(() => true);
 			throw new Error("Please fill out all fields");
 		}
 	}
 }
+
 if(document.getElementsByTagName('form').length > 0){
 	document.getElementById("submit")?.removeAttribute("disabled");
 }
