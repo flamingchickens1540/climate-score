@@ -21,7 +21,7 @@
         <div>
             <Box>
                 <div id="box">
-                    {#if $renderForm == true}
+                    {#if $renderForm}
                         <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
                         <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
                         <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
