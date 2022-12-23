@@ -1,58 +1,58 @@
-<script lang="ts" type="module">
-  import { removeWattBuyData, testWalkScoreData, testWattBuyData } from "./svelteScripts/mainpageTs";
-  import Navbar from "./lib/Navbar.svelte";
-  import ClimateForm from "./lib/ClimateForm.svelte";
-  import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
-  import Box from "./lib/Box.svelte";
-  import { renderForm, walkScore, wattData } from "../common/store";
+<script lang="ts">
+    import { removeWattBuyData, testWalkScoreData, testWattBuyData } from "./svelteScripts/mainpageTs";
+    import Navbar from "./lib/Navbar.svelte";
+    import ClimateForm from "./lib/ClimateForm.svelte";
+    import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
+    import Box from "./lib/Box.svelte";
+    import { renderForm, walkScore, wattData } from "../common/store";
 
-  let wScore: number;
-  let wData: number;
-  let rForm: boolean;
-  walkScore.subscribe(value => {wScore = value});
-  wattData.subscribe(value => {wData = value});
-  renderForm.subscribe(value => {rForm = value});
+    let wScore: number;
+    let wData: number;
+    let rForm: boolean;
+    walkScore.subscribe(value => {wScore = value});
+    wattData.subscribe(value => {wData = value});
+    renderForm.subscribe(value => {rForm = value});
 </script>
-  <title>Climate Score</title>
-  <!-- svelte-ignore missing-declaration -->
-  <Navbar></Navbar>
-  <!-- svelte-ignore missing-declaration -->
-  <div>
-      <Box>
-          <div id="box">
-              {#if $renderForm == true}
-                  <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-                  <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
-                  <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
-                  <div id="address-data">
-                      <ClimateForm></ClimateForm>
-                  </div>
-              {:else}
-                  <div id="address-data">
-                      <ClimateScoreDisplay></ClimateScoreDisplay>
-                  </div>
-              {/if}
-          </div>
-      </Box>
-  </div>
+    <main>
+        <title>Climate Score</title>
+        <!-- svelte-ignore missing-declaration -->
+        <Navbar></Navbar>
+        <!-- svelte-ignore missing-declaration -->
+        <div>
+            <Box>
+                <div id="box">
+                    {#if $renderForm == true}
+                        <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+                        <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+                        <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
+                        <div id="address-data">
+                            <ClimateForm></ClimateForm>
+                        </div>
+                    {:else}
+                        <div id="address-data">
+                            <ClimateScoreDisplay></ClimateScoreDisplay>
+                        </div>
+                    {/if}
+                </div>
+            </Box>
+        </div>
 
 
-  <div>
-      {#if wScore != 0}
-          <p>{wScore.toString()}</p>
-      {:else}
-          <p></p>
-      {/if}
-      {#if wData != 0}
-          <p>Score: {wData.toString()}</p>
-      {:else}
-          <p></p>
-      {/if}
-  </div>
+        <div>
+            {#if wScore != 0}
+                <p>{wScore.toString()}</p>
+            {:else}
+                <p></p>
+            {/if}
+            {#if wData != 0}
+                <p>Score: {wData.toString()}</p>
+            {:else}
+                <p></p>
+            {/if}
+        </div>
 
-  <div id="climate-footer"></div>
-  
-
+        <div id="climate-footer"></div>
+    </main>
 <style>
 
   /* #box{
