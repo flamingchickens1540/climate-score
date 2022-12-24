@@ -2,9 +2,11 @@
 
 	import { getClimateScore } from '../../backend/climateScore';
 	import type { AddressData } from '../../common/types';
+	import { climateScore } from '../../common/stores';
+	import { renderForm } from '../../common/stores';
 
-	import { climateScore } from '../../common/store';
-	import { renderForm } from '../../common/store';
+	let climateScoreValue: number;
+	climateScore.subscribe(value => climateScoreValue = value);
 
 	//Get WalkScore Data
 	export async function onSubmit(form: HTMLFormElement | SubmitEvent)  {	
@@ -21,10 +23,9 @@
 					state: formData.get('state')?.toString() ?? "",
 					zip: formData.get('zip')?.toString() ?? "",
 				}
-				const cliScore: number = await getClimateScore(data);
+				getClimateScore(data);
 				renderForm.update(() => false);
-				climateScore.update(() => cliScore);	
-				return cliScore;
+				return climateScoreValue;
 
 			}else{
 				renderForm.update(() => true);

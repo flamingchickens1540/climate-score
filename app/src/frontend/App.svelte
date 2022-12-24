@@ -3,9 +3,8 @@
     import ClimateForm from "./lib/ClimateForm.svelte";
     import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
     import Box from "./lib/Box.svelte";
-    import { renderForm, walkScore, wattData } from "../common/store";
+    import { renderForm, walkScore, wattData } from "../common/stores";
     import { getWalkScore } from '../backend/apis/walkScore';
-    //import { getAvgCarbonFootprint } from '../../backend/apis/wattBuy';        
     //for some reason it recognizes the file path and the function, but cannot resolve the import
     //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
     //TODO: turn backend into an actual backend
@@ -53,6 +52,10 @@
             .catch(err => console.error(err));
         }
 
+        function changeRenderForm(){
+            renderForm.update(value => value ? false : true);
+        }
+
     let wScore: number;
     let wData: number;
     let rForm: boolean;
@@ -78,6 +81,8 @@
                             <ClimateScoreDisplay></ClimateScoreDisplay>
                         </div>
                     {/if}
+
+                    <button id="changeRenderForm" on:click={changeRenderForm}>Test Render Form</button>
                 </div>
             </Box>
         </div>

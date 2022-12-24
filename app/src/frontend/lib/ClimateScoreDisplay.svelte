@@ -1,22 +1,23 @@
 <script lang="ts">
-    import { climateScore } from "../../common/store";
+    import { climateScore } from "../../common/stores";
+    import ClimateForm from "./ClimateForm.svelte";
     
 
-    let score: number;
+    let climateScoreValue: number;
     climateScore.subscribe(value =>{
         if(value != null) {
-            score = value;
+            climateScoreValue = value;
         }else {
             climateScore.set(0);
-            score = value;
+            climateScoreValue = value;
         }
         
     })
 </script>
 
 <div id="score-display">
-    {#if score!=0}
-        <p>Score: {score.toString()}</p>
+    {#if climateScoreValue!=0}
+        <p>Score: {climateScoreValue.toString()}</p>
     {:else}
         <p></p>
     {/if}
