@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { climateScore } from "../../common/stores";
-    import ClimateForm from "./ClimateForm.svelte";
-    
+    import { climateScore } from "../../common/stores";    
 
     let climateScoreValue: number;
     climateScore.subscribe(value =>{
