@@ -64,7 +64,6 @@
     renderForm.subscribe(value => {rForm = value});
 </script>
     <main>
-        <title>Climate Score</title>
         <Navbar></Navbar>
         <div>
             <Box>
