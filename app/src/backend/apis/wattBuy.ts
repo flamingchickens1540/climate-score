@@ -1,4 +1,4 @@
-import { WATTBUY_API_KEY } from '../../secrets/api_keys';
+import { WATTBUY_API_KEY } from '../../../secrets/api_keys';
 const COALWEIGHT = -2;
 const GASWEIGHT = -1;
 const NUCLEARWEIGHT = .5;
@@ -12,7 +12,7 @@ async function getWattBuy(address: string): Promise<any> {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        'x-api-key': 'rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh'
+        'x-api-key': WATTBUY_API_KEY
     },
     mode: 'no-cors' as RequestMode,
   };

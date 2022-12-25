@@ -6,8 +6,8 @@
 </script>
 
 <header class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2 topnav">
-    <nav class="flex">
-        <h1 id="climate-score-header">Climate Score</h1>
+    <nav class="flex" id="climate-score-header">
+        <h1>Climate Score</h1>
         <Hamburger bind:open={sidebar1}/>
     </nav>
 </header>
@@ -34,9 +34,6 @@
         position: absolute;
         width: 100%;
         height: 75px;
-        font-family: 'Fira Sans';
-        font-weight: 100;
-        font-size: 3.5em;
         left: 0;
         top: 0;
         text-align: center;
@@ -44,6 +41,15 @@
         padding: 10px;
         background-color: #25591F;
     }
+    h1{
+        font-family: 'Fira Sans';
+        font-weight: 100;
+        font-size: 3.5em;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+    }
+    
     nav{
         background-color: #25591F;
     }

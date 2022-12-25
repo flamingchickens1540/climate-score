@@ -68,7 +68,7 @@
       	box-sizing: border-box;
     }
     form {
-		display: flex;
+		display: absolute;
 		flex-direction: column;
 		width: 300px;
 		margin-top: 10px;
