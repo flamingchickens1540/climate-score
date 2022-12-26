@@ -9,7 +9,7 @@
 	climateScore.subscribe(value => climateScoreValue = value);
 
 	//Get WalkScore Data
-	export async function onSubmit(form: HTMLFormElement | SubmitEvent)  {	
+	export async function onSubmit(form: HTMLFormElement | Event) {
 		const formData = form;
 		if(formData instanceof HTMLFormElement) {
 			if(formData.get('address') != null || formData.get('cityName') != null || formData.get('state') != null || formData.get('zip') != null || formData.get('street') != null || formData.get('kindOfStreet') != null || formData.get('cardinal') != null){
@@ -25,7 +25,6 @@
 				}
 				getClimateScore(data);
 				renderForm.update(() => false);
-				return climateScoreValue;
 
 			}else{
 				renderForm.update(() => true);
@@ -34,9 +33,15 @@
 		}
 	}
 
-	if(document.getElementsByTagName('form').length > 0){
-		document.getElementById("submit")?.removeAttribute("disabled");
-	}
+	//Checks if all fields are filled out
+	// var inputs = document.getElementById('climate-form')?.getElementsByTagName('input')??[];
+    // for (var i = 0; i < inputs.length; i++) {
+	// 	if(inputs[i].value != ""){
+	// 		document.getElementById("submit")?.removeAttribute("disabled");
+	// 	}else{
+	// 		document.getElementById("submit")?.setAttribute("disabled", "disabled");
+	// 	}
+	// }
 </script>
 
 <form on:submit|preventDefault={onSubmit}>
