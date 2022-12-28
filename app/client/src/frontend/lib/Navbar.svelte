@@ -8,11 +8,20 @@
 <header class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2 topnav">
     <nav class="flex" id="climate-score-header">
         <h1>Climate Score</h1>
-        <Hamburger bind:open={sidebar1}/>
+        <div id="hamburger-div">
+            <Hamburger bind:open={sidebar1}/>
+        </div>
     </nav>
 </header>
 
 <style>
+
+    #hamburger-div {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+
+    }
     /* #climate-score-header{
         position: relative;
         width: 100%;
@@ -47,7 +56,7 @@
         font-size: 3.5em;
         position: absolute;
         top: 0%;
-        left: 0%;
+        left: 40%;
     }
     
     nav{
