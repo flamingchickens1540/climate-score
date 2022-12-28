@@ -16,6 +16,8 @@ app.use(cors());
 
 app.use('/api', api);
 
+app.get('/api/climat')
+
 const port = process.env.PORT || 5678;
 
 app.listen(port, () => {
