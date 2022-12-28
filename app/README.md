@@ -1,23 +1,36 @@
 # Climate Score
-A website to calculate the environmental impact of living in a certain house, and offer potential improvements.
+Climate Score is website to calculate the **environmental impact** of living in a certain house, and **offer potential improvements**.
 
-The score will be give out of one hundred, with a lower score indicating a larger negative enviornmental impact, while a higher score indicates a lower impact.
-Current sources include: https://wattbuy.readme.io/ and https://www.walkscore.com/ more will be added in the future.
+A **score** will be given out of **one hundred**, with a lower score indicating a larger negative enviornmental impact, while a higher score indicates a lower impact.
 
-Uses yarn and npm as package managers, only because this is my first time using yarn, so I want to make sure any bugs are problems with my code, not yarn.
-Once this is finished, I'll remobe npm.
- 
-To start, first create a secrets folder including an api_keys.ts file with api keys for WalkScore, PositionStack, and WattBuy. 
+The current sources for data include: 
+* [WattBuy](https://wattbuy.readme.io/) 
+* [WalkScore](https://www.walkscore.com/)
+* more coming soon!
 
-Then install run using:
 
-    npm install
 
-Install Dependencies:
+## Installation
+First create a secrets folder including an api_keys.ts file with api keys for WalkScore, PositionStack, and WattBuy. 
 
-    npm run build
-        
-     
-and
+```bash
+# install the backend
+npm install
 
-    npm run dev
+# install the client
+npm run client-install
+```
+
+
+
+## Running the app
+```bash
+# only run the client
+npm run serve:client
+
+# only run the server
+npm run serve:server
+
+# run both the client and server
+npm run dev
+```
