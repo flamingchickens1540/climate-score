@@ -1,107 +1,129 @@
 <script lang="ts">
-    import Navbar from "./lib/Navbar.svelte";
-    import ClimateForm from "./lib/ClimateForm.svelte";
-    import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
-    import Box from "./lib/Box.svelte";
-    import { renderForm, walkScore, wattData } from "../common/stores";
-    import { getWalkScore } from '../backend/apis/walkScore';
-    //for some reason it recognizes the file path and the function, but cannot resolve the import
-    //TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
-    //TODO: turn backend into an actual backend
-    //TODO: fix api issues: 503 errors
+	import Navbar from "./lib/Navbar.svelte";
+	import ClimateForm from "./lib/ClimateForm.svelte";
+	import BetterClimateForm from "./lib/BetterClimateForm.svelte";
+	import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
+	import Box from "./lib/Box.svelte";
+	import { renderForm, walkScore, wattData } from "../common/stores";
+	import { getWalkScore } from "../backend/apis/walkScore";
+	//for some reason it recognizes the file path and the function, but cannot resolve the import
+	//TODO: write frontend nice-ification functions for the data; build out the frontend to look nice
+	//TODO: turn backend into an actual backend
+	//TODO: fix api issues: 503 errors
 
-    //Remove the WattBuy Data from the Screen 
-    //Status: Complete
-    export function removeWattBuyData(){
-        wattData.update(() => 0);
-    }
-    
-    //gets the walkscore data and displays it on the screen
-    //Status: Incomplete
-    export function testWalkScoreData(){
-        getWalkScore("address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
-        .then((walkScore) => {
-            console.log(walkScore);
-            walkScore = walkScore;
-        });
-    }
-    ////Gets the watt buy data and displays it on the screen
-    //Status: Incomplete
-    export function testWattBuyData(){
-        /*
+	//Remove the WattBuy Data from the Screen
+	//Status: Complete
+	export function removeWattBuyData() {
+		wattData.update(() => 0);
+	}
+
+	//gets the walkscore data and displays it on the screen
+	//Status: Incomplete
+	export function testWalkScoreData() {
+		getWalkScore(
+			"address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey="
+		).then((walkScore) => {
+			console.log(walkScore);
+			walkScore = walkScore;
+		});
+	}
+	////Gets the watt buy data and displays it on the screen
+	//Status: Incomplete
+	export function testWattBuyData() {
+		/*
         getAvgCarbonFootprint("address=1515&city=Portland&state=Or&zip=97202")
         .then((carbon) => {
             console.log(carbon);
             wattData = carbon;
         });   
         */
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                'x-api-key': 'rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh'
-            }
-        };
+		const options = {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+				"x-api-key": "rsFQKFKcYk9FOyZuaNne12QHdHeRACtOCT29m5uh",
+			},
+		};
 
-        fetch('https://apis.wattbuy.com/v3/electricity/carbon-footprint?address=1515&city=Portland&state=Or&zip=97202', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                wattData.update(response => response);
-            })
-            .catch(err => console.error(err));
-        }
+		fetch(
+			"https://apis.wattbuy.com/v3/electricity/carbon-footprint?address=1515&city=Portland&state=Or&zip=97202",
+			options
+		)
+			.then((response) => response.json())
+			.then((response) => {
+				console.log(response);
+				wattData.update((response) => response);
+			})
+			.catch((err) => console.error(err));
+	}
 
-        function changeRenderForm(){
-            renderForm.update(value => value ? false : true);
-        }
+	function changeRenderForm() {
+		renderForm.update((value) => (value ? false : true));
+	}
 
-    let wScore: number;
-    let wData: number;
-    let rForm: boolean;
-    walkScore.subscribe(value => {wScore = value});
-    wattData.subscribe(value => {wData = value});
-    renderForm.subscribe(value => {rForm = value});
+	let wScore: number;
+	let wData: number;
+	let rForm: boolean;
+	walkScore.subscribe((value) => {
+		wScore = value;
+	});
+	wattData.subscribe((value) => {
+		wData = value;
+	});
+	renderForm.subscribe((value) => {
+		rForm = value;
+	});
 </script>
-    <main>
-        <Navbar></Navbar>
-        <div>
-            <Box>
-                <div id="box">
-                    {#if $renderForm}
-                        <button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
-                        <button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
-                        <button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
-                        <div id="address-data">
-                            <ClimateForm></ClimateForm>
-                        </div>
-                    {:else}
-                        <div id="address-data">
-                            <ClimateScoreDisplay></ClimateScoreDisplay>
-                        </div>
-                    {/if}
 
-                    <button id="changeRenderForm" on:click={changeRenderForm}>Test Render Form</button>
-                </div>
-            </Box>
-        </div>
+<main>
+	<Navbar />
+	<div>
+		<Box>
+			<div id="box">
+				{#if $renderForm}
+					<button id="wattDelete" on:click={removeWattBuyData}
+						>Remove Watt Buy</button
+					>
+					<button id="wattBuy" on:click={testWattBuyData}
+						>Test Watt Buy</button
+					>
+					<button id="walkScore" on:click={testWalkScoreData}
+						>Test Walk Score</button
+					>
+					<div id="address-data">
+						<ClimateForm />
+					</div>
+				{:else}
+					<div id="address-data">
+						<ClimateScoreDisplay />
+					</div>
+				{/if}
 
+				<button id="changeRenderForm" on:click={changeRenderForm}
+					>Test Render Form</button
+				>
+			</div>
+		</Box>
+	</div>
 
-        <div>
-            {#if wScore != 0}
-                <p>{wScore.toString()}</p>
-            {:else}
-                <p></p>
-            {/if}
-            {#if wData != 0}
-                <p>Score: {wData.toString()}</p>
-            {:else}
-                <p></p>
-            {/if}
-        </div>
+	<div>
+		{#if wScore != 0}
+			<p>{wScore.toString()}</p>
+		{:else}
+			<p />
+		{/if}
+		{#if wData != 0}
+			<p>Score: {wData.toString()}</p>
+		{:else}
+			<p />
+		{/if}
+	</div>
 
-        <div id="climate-footer"></div>
-    </main>
+    <BetterClimateForm></BetterClimateForm>
+
+	<div id="climate-footer" />
+</main>
+
 <style>
 
   /* #box{
