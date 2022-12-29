@@ -122,8 +122,8 @@
 
     #search-form-div {
         position: absolute;
-        left: 40%;
-        top: 15%;
+        left: 39%;
+        top: 19%;
     }
     #box{
         position: absolute;

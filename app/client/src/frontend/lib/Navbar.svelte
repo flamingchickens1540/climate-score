@@ -41,7 +41,7 @@
 
     #climate-score-header{
         position: absolute;
-        width: 100%;
+        width: 99%;
         height: 75px;
         left: 0;
         top: 0;
