@@ -1,4 +1,4 @@
-import { WATTBUY_API_KEY } from '../../../../secrets/api_keys';
+import { WATTBUY_API_KEY } from '../../../secrets/api_keys';
 const COALWEIGHT = -2;
 const GASWEIGHT = -1;
 const NUCLEARWEIGHT = .5;

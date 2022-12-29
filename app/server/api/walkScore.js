@@ -1,3 +1,6 @@
+const api_keys = require("../../secrets/api_keys");
+const WALKSCORE_API_KEY = api_keys.WALKSCORE_API_KEY;
+
 async function getWalkScore(address) {
     const options = {
         credential: 'include',

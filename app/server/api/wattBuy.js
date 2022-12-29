@@ -1,4 +1,4 @@
-const api_keys = require("../secrets/api_keys")
+const api_keys = require("../../secrets/api_keys")
 const WATTBUY_API_KEY = api_keys.WATTBUY_API_KEY
 const COALWEIGHT = -2;
 const GASWEIGHT = -1;
