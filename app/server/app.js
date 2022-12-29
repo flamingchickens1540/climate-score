@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.use('/api', api);
+app.use('/api/v1', api);
 
 const port = process.env.PORT || 5678;
 

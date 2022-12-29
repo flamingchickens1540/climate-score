@@ -7,3 +7,8 @@ export type AddressData = {
     cardinal: string;
     zip: string;
 };
+
+export type Coords = {
+    lat: number,
+    long: number
+}

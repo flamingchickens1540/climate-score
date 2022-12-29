@@ -1,20 +1,20 @@
-const fetch = require("node-fetch")
-const api_keys = require("../secrets/api_keys");
-
 const router = require("express").Router()
 
 router.post('/score', async (req, res) => {
-  // score = await getWalkScore("address=1515%Umatilla%20St%20Portland%20OR%97202&lat=45.463100&lon=-122.650520&transit=1&bike=1&wsapikey=")
-  // wattBuy = await getWattBuy("address=1515&city=Portland&state=Or&zip=97202")
-  // console.log(score)
-  
-  res.status(200).json({
-    score: Math.round(Math.random() * 100),
-    breakdown: {
-      walkscore: req.body.walkscore,
-      wattbuy: req.body.wattbuy
-    }
-  });
+  if (req.body.lat && req.body.lon) {
+    res.status(200).json({
+      "lat": req.body.lat,
+      "long": req.body.long
+    })
+  } else {
+    res.status(400).json({ 
+      "error": true, 
+      "message": "Please provide a lat and long field in the body" })
+  }
+  res.status(500).json({
+    "error": true,
+    "message": "Something when wrong :("
+  })
 });
 
 module.exports = router

@@ -6,9 +6,9 @@
   "scripts": {
     "client-install": "cd client && npm install",
     "start": "node server/index.js",
-    "serve:server": "nodemon server/app.js",
-    "serve:client": "cd client && npm run dev",
-    "dev": "concurrently 'npm run serve:server' 'npm run serve:client'"
+    "dev:server": "nodemon server/app.js",
+    "dev:client": "cd client && npm run dev",
+    "dev": "concurrently 'npm run dev:server' 'npm run dev:client'"
   },
   "dependencies": {
     "body-parser": "^1.20.1",
