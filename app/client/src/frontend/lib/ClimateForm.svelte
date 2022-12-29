@@ -9,7 +9,7 @@
 	climateScore.subscribe(value => climateScoreValue = value);
 
 	//Get WalkScore Data
-	export async function onSubmit(form: HTMLFormElement | SubmitEvent)  {	
+	export async function onSubmit(form: HTMLFormElement | Event)  {	
 		const formData = form;
 		if(formData instanceof HTMLFormElement) {
 			if(formData.get('address') != null || formData.get('cityName') != null || formData.get('state') != null || formData.get('zip') != null || formData.get('street') != null || formData.get('kindOfStreet') != null || formData.get('cardinal') != null){

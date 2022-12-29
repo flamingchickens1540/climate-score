@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Navbar from "./lib/Navbar.svelte";
 	import ClimateForm from "./lib/ClimateForm.svelte";
-	import BetterClimateForm from "./lib/BetterClimateForm.svelte";
+	import SearchClimateForm from "./lib/SearchClimateForm.svelte";
 	import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
 	import Box from "./lib/Box.svelte";
 	import { renderForm, walkScore, wattData } from "../common/stores";
@@ -27,6 +27,7 @@
 			walkScore = walkScore;
 		});
 	}
+
 	////Gets the watt buy data and displays it on the screen
 	//Status: Incomplete
 	export function testWattBuyData() {
@@ -76,60 +77,59 @@
 </script>
 
 <main>
-	<Navbar />
+	<Navbar/>
 	<div>
-		<Box>
-			<div id="box">
+        <div id="box">
+		    <Box>
 				{#if $renderForm}
-					<button id="wattDelete" on:click={removeWattBuyData}
-						>Remove Watt Buy</button
-					>
-					<button id="wattBuy" on:click={testWattBuyData}
-						>Test Watt Buy</button
-					>
-					<button id="walkScore" on:click={testWalkScoreData}
-						>Test Walk Score</button
-					>
+					<button id="wattDelete" on:click={removeWattBuyData}>Remove Watt Buy</button>
+					<button id="wattBuy" on:click={testWattBuyData}>Test Watt Buy</button>
+					<button id="walkScore" on:click={testWalkScoreData}>Test Walk Score</button>
 					<div id="address-data">
-						<ClimateForm />
+						<ClimateForm/>
 					</div>
 				{:else}
 					<div id="address-data">
-						<ClimateScoreDisplay />
+						<ClimateScoreDisplay/>
 					</div>
 				{/if}
-
-				<button id="changeRenderForm" on:click={changeRenderForm}
-					>Test Render Form</button
-				>
-			</div>
-		</Box>
+				<button id="changeRenderForm" on:click={changeRenderForm}>Test Render Form</button>	
+		    </Box>
+        </div>
 	</div>
 
 	<div>
 		{#if wScore != 0}
 			<p>{wScore.toString()}</p>
 		{:else}
-			<p />
+			<p/>
 		{/if}
 		{#if wData != 0}
 			<p>Score: {wData.toString()}</p>
 		{:else}
-			<p />
+			<p/>
 		{/if}
 	</div>
-
-    <BetterClimateForm></BetterClimateForm>
+    <div id="search-form-div">
+        <SearchClimateForm/>
+    </div>
 
 	<div id="climate-footer" />
 </main>
 
 <style>
 
-  /* #box{
-      
-      position: relative  ;
-  } */
+
+    #search-form-div {
+        position: absolute;
+        left: 40%;
+        top: 15%;
+    }
+    #box{
+        position: absolute;
+        left: 25%;
+        top: 30%;
+    }
 
   /* #climate-header{
       position: relative;
