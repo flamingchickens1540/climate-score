@@ -1,8 +1,8 @@
-import type { AddressData } from "../common/types";
+import type { AddressData } from "../../../common/types";
 import { getWalkScore } from "./apis/walkScore";
 import { getPositionStack } from "./apis/walkScore";
 import { getEnergyScore, getAvgCarbonFootprint } from "./apis/wattBuy";
-import { climateScore } from "../common/stores";
+import { climateScore } from "../frontend/stores";
 
 //Collects all the data from the apis and returns a climate score
 //Parameters: address, city, state, zip, lat, long

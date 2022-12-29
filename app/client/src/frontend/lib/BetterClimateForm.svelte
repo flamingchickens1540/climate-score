@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { GEOAPI_API_KEY } from "../../../secrets/api_keys";
+	import { GEOAPI_API_KEY } from "../../../../common/secrets/api_keys";
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
-	import type { Coords } from "../../common/types";
+	import type { Coords } from "../../../../common/types";
 
 	let autoDiv: HTMLDivElement;
 	let selection: Coords = null;

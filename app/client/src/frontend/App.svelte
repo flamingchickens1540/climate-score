@@ -4,7 +4,7 @@
 	import SearchClimateForm from "./lib/SearchClimateForm.svelte";
 	import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
 	import Box from "./lib/Box.svelte";
-	import { renderForm, walkScore, wattData } from "../common/stores";
+	import { renderForm, walkScore, wattData } from "./stores";
 	import { getWalkScore } from "../backend/apis/walkScore";
 	//for some reason it recognizes the file path and the function, but cannot resolve the import
 	//TODO: write frontend nice-ification functions for the data; build out the frontend to look nice

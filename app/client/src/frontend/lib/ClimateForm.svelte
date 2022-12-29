@@ -1,9 +1,8 @@
 <script lang="ts" src="../svelteScripts/ClimateFormTs">
 
 	import { getClimateScore } from '../../backend/climateScore';
-	import type { AddressData } from '../../common/types';
-	import { climateScore } from '../../common/stores';
-	import { renderForm } from '../../common/stores';
+	import type { AddressData } from '../../../../common/types';
+	import { climateScore, renderForm  } from '../stores';
 
 	let climateScoreValue: number;
 	climateScore.subscribe(value => climateScoreValue = value);

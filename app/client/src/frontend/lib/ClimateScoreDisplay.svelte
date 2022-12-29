@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { climateScore } from "../../common/stores";    
+    import { climateScore } from "../stores";    
 
     let climateScoreValue: number;
     climateScore.subscribe(value =>{
