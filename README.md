@@ -26,10 +26,10 @@ npm run client-install
 ## Running the app
 ```bash
 # only run the client
-npm run serve:client
+npm run dev:client
 
 # only run the server
-npm run serve:server
+npm run dev:server
 
 # run both the client and server
 npm run dev
