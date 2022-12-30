@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GEOAPI_API_KEY } from "../../../../common/secrets/api_keys";
+	import { GEOAPI_API_KEY } from "../../../../common/api_keys";
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
 	import type { Coords } from "../../../../common/types";
@@ -24,7 +24,9 @@
 
 	async function getScore(): Promise<void> {
 		if (selection == null) await locScore()
-		else console.log(selection); //make the request for the score
+		else{
+			fetch('http://localhost:5137/score')
+		} //make the request for the score
 	}
 
 	async function locScore(): Promise<void> {

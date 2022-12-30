@@ -16,6 +16,10 @@ app.use(cors());
 
 app.use('/api/v1', api);
 
+app.get('/api/:lat/:long', (req, res) => {
+	
+})
+
 const port = process.env.PORT || 5678;
 
 app.listen(port, () => {

@@ -2,6 +2,7 @@
 	import Navbar from "./lib/Navbar.svelte";
 	import ClimateForm from "./lib/ClimateForm.svelte";
 	import SearchClimateForm from "./lib/SearchClimateForm.svelte";
+	import BetterClimateForm from "./lib/BetterClimateForm.svelte";
 	import ClimateScoreDisplay from "./lib/ClimateScoreDisplay.svelte";
 	import Box from "./lib/Box.svelte";
 	import { renderForm, walkScore, wattData } from "./stores";
@@ -111,7 +112,7 @@
 		{/if}
 	</div>
     <div id="search-form-div">
-        <SearchClimateForm/>
+        <BetterClimateForm/>
     </div>
 
 	<div id="climate-footer" />
