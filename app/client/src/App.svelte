@@ -27,6 +27,13 @@
 </main>
 
 <style>
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        margin-bottom: -100px;
+    }
   /* #climate-header{
       position: relative;
       width: 100%;

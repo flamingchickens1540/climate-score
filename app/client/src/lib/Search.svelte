@@ -115,6 +115,7 @@
 	}
 
 	main {
-		display: flex;
+		display:flex;
+		margin: auto;
 	}
 </style>
