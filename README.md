@@ -7,7 +7,6 @@ The current sources for data include:
 * [WattBuy](https://wattbuy.readme.io/) 
 * [WalkScore](https://www.walkscore.com/)
 * [GeoApiify](https://www.geoapify.com/)
-*
 
 
 
