@@ -3,3 +3,4 @@ secrets
 .DS_Store
 node_modules
 /server/secrets
+/common/api_keys.ts
