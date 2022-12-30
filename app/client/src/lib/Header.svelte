@@ -1,27 +1,13 @@
 <script type="ts">
-    import Hamburger from "./Hamburger.svelte";
-
-    let sidebar1 = false;
-    //export let sidebar = sidebar1;
 </script>
 
-<header class="flex justify-between bg-gray-200 p-2 items-center text-gray-600 border-b-2 topnav">
+<header>
     <nav class="flex" id="climate-score-header">
         <h1>Climate Score</h1>
-        <div id="hamburger-div">
-            <Hamburger bind:open={sidebar1}/>
-        </div>
     </nav>
 </header>
 
 <style>
-
-    #hamburger-div {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-
-    }
     /* #climate-score-header{
         position: relative;
         width: 100%;
@@ -50,6 +36,7 @@
         padding: 10px;
         background-color: #25591F;
     }
+    
     h1{
         font-family: 'Fira Sans';
         font-weight: 100;

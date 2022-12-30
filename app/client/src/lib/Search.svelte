@@ -1,32 +1,64 @@
 <script lang="ts">
+<<<<<<< HEAD:app/client/src/frontend/lib/BetterClimateForm.svelte
 	import { GEOAPI_API_KEY } from "../../../../common/api_keys";
+=======
+>>>>>>> new-frontend:app/client/src/lib/Search.svelte
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
-	import type { Coords } from "../../../../common/types";
+	import type { Coords } from "../../../common/types";
+
+	export let promise = null;
 
 	let autoDiv: HTMLDivElement;
 	let selection: Coords = null;
 
 	onMount(() => {
-		const autocomplete = new GeocoderAutocomplete(autoDiv, GEOAPI_API_KEY, {
-			type: "amenity",
-			lang: "en",
-			limit: 5,
-			placeholder: "Enter a location",
-			skipIcons: true,
-			skipDetails: true,
-		});
+		const autocomplete = new GeocoderAutocomplete(
+			autoDiv,
+			"a944e82063ef4de9bfb572469d5b8eea",
+			{
+				type: "amenity",
+				lang: "en",
+				limit: 5,
+				placeholder: "Enter a location",
+				skipIcons: true,
+				skipDetails: true,
+			}
+		);
 
 		autocomplete.on("select", (loc) => {
-			selection = loc == null ? null : { lat: loc.properties.lat, long: loc.properties.lon };
+			selection =
+				loc == null
+					? null
+					: { lat: loc.properties.lat, long: loc.properties.lon };
 		});
 	});
 
+	//function for the appstate that collects the data
+	async function score() {
+		const data = await fetch("http://localhost:5678/api/v1/score", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(selection),
+		}).then((res) => res.json());
+
+		if (data.error) throw new Error("Failed to generate climate score")
+		
+		return data
+	}
+
 	async function getScore(): Promise<void> {
+<<<<<<< HEAD:app/client/src/frontend/lib/BetterClimateForm.svelte
 		if (selection == null) await locScore()
 		else{
 			fetch('http://localhost:5137/score')
 		} //make the request for the score
+=======
+		if (selection == null) await locScore();
+		else {
+			promise = score();
+		}
+>>>>>>> new-frontend:app/client/src/lib/Search.svelte
 	}
 
 	async function locScore(): Promise<void> {
@@ -39,14 +71,14 @@
 						lat: pos.coords.latitude,
 						long: pos.coords.longitude,
 					};
-					
+
 					getScore();
 				},
 
 				//failed geolocation
 				async (_err) => {
 					selection = await getLocFromIp();
-					
+
 					getScore();
 				}
 			);
@@ -61,14 +93,15 @@
 	async function getLocFromIp(): Promise<Coords> {
 		return fetch(`https://ipify.org/`) //get ip
 			.then((res) => res.text())
-			.then((ip) => fetch(`https://ipapi.co/${ip}/json/`) //get location
-				.then((res) => res.json())
-				.then((data) => {
-					return {
-						lat: data.latitude,
-						long: data.longitude,
-					};
-				})
+			.then((ip) =>
+				fetch(`https://ipapi.co/${ip}/json/`) //get location
+					.then((res) => res.json())
+					.then((data) => {
+						return {
+							lat: data.latitude,
+							long: data.longitude,
+						};
+					})
 			);
 	}
 </script>
