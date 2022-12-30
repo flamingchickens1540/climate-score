@@ -1,6 +1,6 @@
 //fetch lat and long from the address with positionstack api
 
-import { POSITIONSTACK_API_KEY, WALKSCORE_API_KEY } from '../../../../common/secrets/api_keys';
+import { POSITIONSTACK_API_KEY, WALKSCORE_API_KEY } from '../../../../common/api_keys';
 
 
 export async function getPositionStack(address: string): Promise<any> {

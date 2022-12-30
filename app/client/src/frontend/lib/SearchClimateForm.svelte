@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GEOAPI_API_KEY } from "../../../../common/secrets/api_keys";
+	import { GEOAPI_API_KEY } from "../../../../common/api_keys";
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
 
