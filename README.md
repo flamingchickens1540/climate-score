@@ -6,7 +6,7 @@ A **score** will be given out of **one hundred**, with a lower score indicating 
 The current sources for data include: 
 * [WattBuy](https://wattbuy.readme.io/) 
 * [WalkScore](https://www.walkscore.com/)
-* more coming soon!
+* [GeoApiify](https://www.geoapify.com/)
 
 
 
@@ -26,10 +26,10 @@ npm run client-install
 ## Running the app
 ```bash
 # only run the client
-npm run serve:client
+npm run dev:client
 
 # only run the server
-npm run serve:server
+npm run dev:server
 
 # run both the client and server
 npm run dev
