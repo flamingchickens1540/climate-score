@@ -6,7 +6,7 @@ A **score** will be given out of **one hundred**, with a lower score indicating 
 The current sources for data include: 
 * [WattBuy](https://wattbuy.readme.io/) 
 * [WalkScore](https://www.walkscore.com/)
-* [GeoApiify](https://www.geoapify.com/)
+* more coming soon! 
 
 
 

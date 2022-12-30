@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	export let open = false
 </script>
 <div>
@@ -49,4 +49,4 @@
   .open #bottom {
 		transform: translate(-12px, 9px) rotate(-45deg)
 	}
-</style>
+</style> -->
