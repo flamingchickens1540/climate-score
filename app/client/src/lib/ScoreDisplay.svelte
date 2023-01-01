@@ -9,20 +9,19 @@
 	const HYDROWEIGHT = 1.5;
 	const WINDWEIGHT = 1.5;
 	const SOLARWEIGHT = 1.5;
-	function getClimateScore() {
-		let walkscore = data["walkscore"];
-		let adjustedCarbonFootprint = Math.round((100 - data["carbonFootprint"] / 450));
-		console.log("adjusted footprint: " + adjustedCarbonFootprint);
-		let energyScore = getEnergyScore(data);
-		let climateScore = Math.round(((walkscore * walkWeight) + (adjustedCarbonFootprint * carbonWeight) + (energyScore * energyWeight)) / (walkWeight + energyWeight + carbonWeight) * .7);
-		if(climateScore > 100) climateScore = 100;
-		if(climateScore < 0) climateScore = 0;
-		console.log(climateScore);
 
-		return climateScore
-	}
+	let walkscore = data["walkscore"];
+	let adjustedCarbonFootprint = Math.round((100 - data["carbonFootprint"] / 370));
+	console.log("adjusted footprint: " + adjustedCarbonFootprint);
+	let energyScore = getEnergyScore(data);
+	let climateScore = Math.round(((walkscore * walkWeight) + (adjustedCarbonFootprint * carbonWeight) + (energyScore * energyWeight)) / (walkWeight + energyWeight + carbonWeight) * .7);
+	if(climateScore > 100) climateScore = 100;
+	if(climateScore < 0) climateScore = 0;
+	console.log(climateScore);
 
-	function getEnergyScore(data: any):number {
+	
+
+	function getEnergyScore(data: any): number {
 		let energyScore = 0;
 
 		energyScore += GASWEIGHT*(data.percentNaturalGas);
@@ -36,7 +35,6 @@
 		return Math.round(energyScore);
 	}
 
-	let climateScore = getClimateScore();
 </script>
 
 <!-- this displays each of the datapoints and paragraphs -->
