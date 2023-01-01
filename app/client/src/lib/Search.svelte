@@ -115,7 +115,9 @@
 	}
 
 	main {
-		display:flex;
-		margin: auto;
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+		top: 20vh;
 	}
 </style>

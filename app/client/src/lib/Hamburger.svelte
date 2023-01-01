@@ -1,5 +1,5 @@
-<!-- <script>
-	export let open = false
+<script>
+	export let open;
 </script>
 <div>
 	<button class:open on:click={() => open = !open}>
@@ -14,9 +14,11 @@
 
 <style>
 	div{
-		position: relative;
+		position: absolute;
 		width: 100%;
 		height: 100%;
+		left: -46vw;
+		top: 3vh;
 	}
 
 	svg {
@@ -49,4 +51,4 @@
   .open #bottom {
 		transform: translate(-12px, 9px) rotate(-45deg)
 	}
-</style> -->
+</style>

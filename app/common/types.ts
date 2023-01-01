@@ -12,3 +12,11 @@ export type Coords = {
     lat: number,
     long: number
 }
+
+export type SpinnerTypes = {
+	size: string | number;
+	color: string;
+	unit: string;
+	duration: string;
+	pause: boolean;
+};
