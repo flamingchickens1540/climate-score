@@ -42,8 +42,8 @@
         font-weight: 100;
         font-size: 3.5em;
         position: absolute;
-        top: 0%;
-        left: 40%;
+        top: -25%;
+        left: 40vw;
     }
     
     nav{

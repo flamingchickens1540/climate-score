@@ -18,23 +18,25 @@
 
 <main>
 	<Navbar/>
-	<Search bind:promise={promise}></Search>
-    {#if promise}
+    {#if !promise}
+        <Search bind:promise={promise}></Search>
+        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0=" alt="placeholder for map">
+    {:else}
         {#await promise}
             <ScoreLoading></ScoreLoading>
         {:then data} 
             <ScoreDisplay data={data} bind:walkWeight={walkWeight} bind:energyWeight={energyWeight} bind:carbonWeight={carbonWeight}></ScoreDisplay>
         {:catch error}
             <ScoreError error={error}></ScoreError>
-        {/await}
-    {:else}
-        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0=" alt="placeholder for map">
+        {/await}        
     {/if}
     <Hamburger bind:open={open}/>
-    {#if open == true}
+    {#if open}
         <Settings bind:walkWeight={walkWeight} bind:energyWeight={energyWeight} bind:carbonWeight={carbonWeight}></Settings>
     {/if}
-	<Footer></Footer>
+	{#if !promise}
+        <Footer></Footer>
+    {/if}
 </main>
 
 <style>

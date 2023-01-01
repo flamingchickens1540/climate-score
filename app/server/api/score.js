@@ -47,7 +47,7 @@ async function getCarbonFootprint(state) {
   }).then(res => res.json()).then(data => data.data)
   if (DEBUG) console.log(data);
   return {
-    "carbonFootprint": data.annual_carbon_footprint,
+    "carbonFootprint": data.baseline_annual_usage,
     "percentNaturalGas": data.estimated_generation_data[0].value,
     "percentHydroelectric": data.estimated_generation_data[1].value,
     "percentWind": data.estimated_generation_data[2].value,
@@ -70,18 +70,4 @@ async function getLocationDetails(lat, long) {
   return fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&format=json&apiKey=${APIkeys.GEOAPI_API_KEY}`)
     .then(res => res.json())
     .then(data => data.results[0])
-}
-
-function getEnergyScore(wattBuy) {
-  let energyScore = 0;
-
-  energyScore += GASWEIGHT*(wattBuy.percentNaturalGas);
-
-  energyScore += HYDROWEIGHT*(wattBuy.percentHydroelectric);
-
-  energyScore += WINDWEIGHT*(wattBuy.percentWind);
-
-  energyScore += SOLARWEIGHT*(wattBuy.percentSolar);
-
-  return Math.round(energyScore) * 4;
 }

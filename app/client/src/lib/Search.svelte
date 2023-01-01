@@ -2,12 +2,9 @@
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
 	import type { Coords } from "../../../common/types";
-
 	export let promise = null;
-
 	let autoDiv: HTMLDivElement;
 	let selection: Coords = null;
-
 	onMount(() => {
 		const autocomplete = new GeocoderAutocomplete(
 			autoDiv,
@@ -21,7 +18,6 @@
 				skipDetails: true,
 			}
 		);
-
 		autocomplete.on("select", (loc) => {
 			selection =
 				loc == null
@@ -29,7 +25,6 @@
 					: { lat: loc.properties.lat, long: loc.properties.lon };
 		});
 	});
-
 	//function for the appstate that collects the data
 	async function score() {
 		const data = await fetch("http://localhost:5678/api/v1/score", {
@@ -37,19 +32,16 @@
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(selection),
 		}).then((res) => res.json());
-
 		if (data.error) throw new Error("Failed to generate climate score")
 		
 		return data
 	}
-
 	async function getScore(): Promise<void> {
 		if (selection == null) await locScore();
 		else {
 			promise = score();
 		}
 	}
-
 	async function locScore(): Promise<void> {
 		if (navigator.geolocation) {
 			//find location with geolocator
@@ -60,25 +52,20 @@
 						lat: pos.coords.latitude,
 						long: pos.coords.longitude,
 					};
-
 					getScore();
 				},
-
 				//failed geolocation
 				async (_err) => {
 					selection = await getLocFromIp();
-
 					getScore();
 				}
 			);
 		} else {
 			//find location with ip
 			selection = await getLocFromIp();
-
 			getScore();
 		}
 	}
-
 	async function getLocFromIp(): Promise<Coords> {
 		return fetch(`https://ipify.org/`) //get ip
 			.then((res) => res.text())
@@ -113,11 +100,10 @@
 	.autocomplete-container {
 		position: relative;
 	}
-
 	main {
-		display: block;
-		margin-right: auto;
-		margin-left: auto;
-		top: 20vh;
+		display: flex;
+		position: absolute;
+		left:38vw;
+		top: 17vh;
 	}
 </style>
