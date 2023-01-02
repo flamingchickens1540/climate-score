@@ -99,6 +99,9 @@
 <style>
 	.autocomplete-container {
 		position: relative;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-color: #43281C;
 	}
 	main {
 		display: flex;
