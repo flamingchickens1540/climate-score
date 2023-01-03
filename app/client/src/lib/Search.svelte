@@ -102,6 +102,7 @@
 		padding-left: 10px;
 		padding-right: 10px;
 		border-color: #43281C;
+		z-index: inherit;
 	}
 	main {
 		display: flex;
@@ -109,5 +110,6 @@
 		left: 50%;
 		top: 20%;
 		transform: translate(-50%, -50%);
+		z-index: 10;
 	}
 </style>

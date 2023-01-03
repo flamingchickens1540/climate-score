@@ -57,7 +57,7 @@
         width: 73%;
         height: 73%;
         border-radius: 100%;
-        
+        z-index: -1;
         
     }
 

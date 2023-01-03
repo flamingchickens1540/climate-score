@@ -64,7 +64,7 @@
 	</p>
 	<h3>Energy Sources</h3>
 	<p>
-		{data["Natural Gas"]}% of this location's energy comes from natual gasses, {data["Coal"]}% comes from coal, {data["Nuclear"]} of it comes from nuclear, around {data["Hydroelectric"]}% comes from hydrioelectric power, about {data["Solar"]}% from solar, and {data["Wind"]}% from wind.
+		{data["Natural Gas"] ?? 0}% of this location's energy comes from natual gasses, {data["Coal"] ?? 0}% comes from coal, {data["Nuclear"] ?? 0} of it comes from nuclear, around {data["Hydroelectric"] ?? 0}% comes from hydrioelectric power, about {data["Solar"] ?? 0}% from solar, and {data["Wind"] ?? 0}% from wind.
 	</p>
 	<h3>Carbon Footprint</h3>
 	<p>
