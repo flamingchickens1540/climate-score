@@ -37,13 +37,16 @@
         background-color: #25591F;
     }
     
-    h1{
-        font-family: 'Fira Sans';
-        font-weight: 100;
+    h1 {
+        font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+        color: #DCCDBC;
+        -webkit-text-stroke: 3px #43281C;
+        font-weight: 1000;
         font-size: 3.5em;
         position: absolute;
-        top: 0%;
-        left: 40%;
+        left: 50%;
+        top: 3%;
+        transform: translate(-50%, -50%);
     }
     
     nav{

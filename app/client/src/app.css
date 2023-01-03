@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #DCCDBC;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,6 +22,12 @@ a {
 }
 a:hover {
   color: #535bf2;
+}
+
+input {
+  background-color: #87A330;
+  color: #43281C;
+  border-color: #43281C;
 }
 
 body {
@@ -55,7 +61,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #87A330;
+  border-color: #43281C;
   cursor: pointer;
   transition: border-color 0.25s;
 }

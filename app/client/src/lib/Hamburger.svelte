@@ -1,7 +1,6 @@
-<!-- <script>
-	export let open = false
+<script>
+	export let open;
 </script>
-<div>
 	<button class:open on:click={() => open = !open}>
 		<svg width=32 height=24>
 			<line id="top" x1=0 y1=2  x2=32 y2=2/>
@@ -9,15 +8,9 @@
 			<line id="bottom" x1=0 y1=22 x2=32 y2=22/>
 		</svg>
 	</button>
-</div>
 
 
 <style>
-	div{
-		position: relative;
-		width: 100%;
-		height: 100%;
-	}
 
 	svg {
 		min-height: 24px;
@@ -32,6 +25,11 @@
 	
 	button {
 		z-index: 20;
+		position: absolute;
+		width: 5%;
+		height: 7%;
+		left: 3vh;
+		top: 3vh;
 	}
 	
 	.open svg {
@@ -49,4 +47,4 @@
   .open #bottom {
 		transform: translate(-12px, 9px) rotate(-45deg)
 	}
-</style> -->
+</style>

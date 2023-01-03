@@ -5,28 +5,62 @@
 	import Search from "./lib/Search.svelte";
 	import ScoreLoading from "./lib/ScoreLoading.svelte";
 	import ScoreError from "./lib/ScoreError.svelte";
+	import Settings from "./lib/Settings.svelte";
+	import Hamburger from "./lib/Hamburger.svelte";
+	import { bind } from "svelte/internal";
 
-    let promise;
+	let promise;
+	let walkWeight = 1;
+	let energyWeight = 1;
+	let carbonWeight = 1;
+	let open = false;
 </script>
 
 <main>
-	<Navbar/>
-	<Search bind:promise={promise}></Search>
-    {#if promise}
-        {#await promise}
-            <ScoreLoading></ScoreLoading>
-        {:then data} 
-            <ScoreDisplay data={data}></ScoreDisplay>
-        {:catch error}
-            <ScoreError></ScoreError>
-        {/await}
-    {:else}
-        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0=" alt="placeholder for map">
-    {/if}
-	<Footer></Footer>
+	<Navbar />
+	{#if !promise}
+		<Search bind:promise />
+		<img
+			src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0="
+			alt="placeholder for map"
+		/>
+	{:else}
+		{#await promise}
+			<ScoreLoading />
+		{:then data}
+			<ScoreDisplay
+				{data}
+				bind:walkWeight
+				bind:energyWeight
+				bind:carbonWeight
+			/>
+		{:catch error}
+			<ScoreError {error} />
+		{/await}
+	{/if}
+	<Hamburger bind:open />
+	{#if open}
+		<Settings bind:walkWeight bind:energyWeight bind:carbonWeight />
+	{/if}
+	{#if !promise}
+		<Footer />
+	{/if}
 </main>
 
 <style>
+    img{
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+        width: 73%;
+        height: 73%;
+        border-radius: 100%;
+        
+        
+    }
+
   /* #climate-header{
       position: relative;
       width: 100%;
