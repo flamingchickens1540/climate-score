@@ -49,7 +49,7 @@
 </script>
 
 <!-- this displays each of the datapoints and paragraphs -->
-<div class="box">
+<center class="box">
 	<h2>{climateScore}</h2>
 	<p>
 		Based on the data we've received about your property, we would give this property a climate score of {climateScore}.
@@ -79,18 +79,29 @@
 		{/if}
 
 	</p>
-</div>
+</center>
 
 <style>
 	.box {
-		width: 1000px;
+		width: 80%;
 		border: 1px solid #aaa;
-		border-radius: 2px;
+		border-radius: 50px;
 		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-		padding: 1em;
+		padding: 4em;
 		margin: 0 0 1em 0;
 		margin-right: 50%;
 		margin-bottom: -5%;
 		margin-top: 4%;
+		background-color: #D9D9D9;
+		color: #000000;
+	}
+
+	p {
+		text-align: justify;
+	}
+
+	h2, h3 {
+		font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+		text-align: center;
 	}
 </style>

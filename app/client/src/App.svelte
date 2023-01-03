@@ -5,38 +5,46 @@
 	import Search from "./lib/Search.svelte";
 	import ScoreLoading from "./lib/ScoreLoading.svelte";
 	import ScoreError from "./lib/ScoreError.svelte";
-    import Settings from "./lib/Settings.svelte";
-    import Hamburger from "./lib/Hamburger.svelte";
-    import { bind } from "svelte/internal";
-    
-    let promise;
-    let walkWeight = 1;
-    let energyWeight = 1;
-    let carbonWeight = 1;
-    let open = false;
+	import Settings from "./lib/Settings.svelte";
+	import Hamburger from "./lib/Hamburger.svelte";
+	import { bind } from "svelte/internal";
+
+	let promise;
+	let walkWeight = 1;
+	let energyWeight = 1;
+	let carbonWeight = 1;
+	let open = false;
 </script>
 
 <main>
-	<Navbar/>
-    {#if !promise}
-        <Search bind:promise={promise}></Search>
-        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0=" alt="placeholder for map">
-    {:else}
-        {#await promise}
-            <ScoreLoading></ScoreLoading>
-        {:then data} 
-            <ScoreDisplay data={data} bind:walkWeight={walkWeight} bind:energyWeight={energyWeight} bind:carbonWeight={carbonWeight}></ScoreDisplay>
-        {:catch error}
-            <ScoreError error={error}></ScoreError>
-        {/await}        
-    {/if}
-    <Hamburger bind:open={open}/>
-    {#if open}
-        <Settings bind:walkWeight={walkWeight} bind:energyWeight={energyWeight} bind:carbonWeight={carbonWeight}></Settings>
-    {/if}
+	<Navbar />
 	{#if !promise}
-        <Footer></Footer>
-    {/if}
+		<Search bind:promise />
+		<img
+			src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0="
+			alt="placeholder for map"
+		/>
+	{:else}
+		{#await promise}
+			<ScoreLoading />
+		{:then data}
+			<ScoreDisplay
+				{data}
+				bind:walkWeight
+				bind:energyWeight
+				bind:carbonWeight
+			/>
+		{:catch error}
+			<ScoreError {error} />
+		{/await}
+	{/if}
+	<Hamburger bind:open />
+	{#if open}
+		<Settings bind:walkWeight bind:energyWeight bind:carbonWeight />
+	{/if}
+	{#if !promise}
+		<Footer />
+	{/if}
 </main>
 
 <style>
@@ -48,6 +56,7 @@
         margin-bottom: -100px;
         border-radius: 100%;
     }
+
   /* #climate-header{
       position: relative;
       width: 100%;
