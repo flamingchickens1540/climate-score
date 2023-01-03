@@ -64,7 +64,7 @@
 	</p>
 	<h3>Energy Sources</h3>
 	<p>
-		Around {data.percentNaturalGas}% of this location's energy comes from natual gasses, around {data.percentHydroelectric}% comes from hydrioelectric power, about {data.percentSolar}% from solar, and {data.percentWind}% from wind.
+		{data["Natural Gas"]}% of this location's energy comes from natual gasses, {data["Coal"]}% comes from coal, {data["Nuclear"]} of it comes from nuclear, around {data["Hydroelectric"]}% comes from hydrioelectric power, about {data["Solar"]}% from solar, and {data["Wind"]}% from wind.
 	</p>
 	<h3>Carbon Footprint</h3>
 	<p>
@@ -84,14 +84,19 @@
 <style>
 	.box {
 		width: 80%;
+		height: min-content;
 		border: 1px solid #aaa;
 		border-radius: 50px;
 		box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-		padding: 4em;
+		padding-top: 0em;
+		padding-bottom: 0em;
+		padding-left: 3em;
+		padding-right: 3em;
 		margin: 0 0 1em 0;
-		margin-right: 50%;
-		margin-bottom: -5%;
-		margin-top: 4%;
+		position: absolute;
+		left: 50%;
+		top: 58%;
+		transform: translate(-50%, -50%);
 		background-color: #D9D9D9;
 		color: #000000;
 	}

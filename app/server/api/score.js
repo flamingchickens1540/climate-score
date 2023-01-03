@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const fetch = require("node-fetch");
-const APIkeys = require("../../common/secrets/api_keys")
+const APIkeys = require("../../secrets/api_keys")
 const DEBUG = true;
 router.post('/score', async (req, res) => {
   const lat = req.body?.lat

@@ -50,11 +50,15 @@
 <style>
     img{
         display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-        margin-bottom: -100px;
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+        width: 73%;
+        height: 73%;
         border-radius: 100%;
+        
+        
     }
 
   /* #climate-header{

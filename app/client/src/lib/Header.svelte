@@ -44,8 +44,9 @@
         font-weight: 1000;
         font-size: 3.5em;
         position: absolute;
-        top: -25%;
-        left: 40vw;
+        left: 50%;
+        top: 3%;
+        transform: translate(-50%, -50%);
     }
     
     nav{
