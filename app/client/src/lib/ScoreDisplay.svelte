@@ -1,11 +1,15 @@
 <script lang="ts">
+	//1850 lbs per year is the average emissions of an American household
+	//370 is the number that makes 1850 become 50, thus making the average useful
 	//data is passed as a prop
 	export let walkWeight: number;
 	export let energyWeight: number;
 	export let carbonWeight: number;
 	export let data: any;
 
+	const COALWEIGHT = -1.5;
 	const GASWEIGHT = -1;
+	const NUCLEARWEIGHT = 1;
 	const HYDROWEIGHT = 1.5;
 	const WINDWEIGHT = 1.5;
 	const SOLARWEIGHT = 1.5;
@@ -13,10 +17,13 @@
 	let walkscore = data["walkscore"];
 	let adjustedCarbonFootprint = Math.round((100 - data["carbonFootprint"] / 370));
 	console.log("adjusted footprint: " + adjustedCarbonFootprint);
+
 	let energyScore = getEnergyScore(data);
-	let climateScore = Math.round(((walkscore * walkWeight) + (adjustedCarbonFootprint * carbonWeight) + (energyScore * energyWeight)) / (walkWeight + energyWeight + carbonWeight) * .7);
+
+	let climateScore = Math.round(((walkscore * walkWeight) + (adjustedCarbonFootprint * carbonWeight) + (energyScore * energyWeight)) / (walkWeight + energyWeight + carbonWeight));
 	if(climateScore > 100) climateScore = 100;
 	if(climateScore < 0) climateScore = 0;
+
 	console.log(climateScore);
 
 	
@@ -24,13 +31,17 @@
 	function getEnergyScore(data: any): number {
 		let energyScore = 0;
 
-		energyScore += GASWEIGHT*(data.percentNaturalGas);
+		energyScore += COALWEIGHT*(data["Coal"] ?? 0);
 
-		energyScore += HYDROWEIGHT*(data.percentHydroelectric);
+		energyScore += GASWEIGHT*(data["Natural Gas"] ?? 0);
 
-		energyScore += WINDWEIGHT*(data.percentWind);
+		energyScore += NUCLEARWEIGHT*(data["Nuclear"] ?? 0);
 
-		energyScore += SOLARWEIGHT*(data.percentSolar);
+		energyScore += HYDROWEIGHT*(data["Hydroelectric"] ?? 0);
+
+		energyScore += WINDWEIGHT*(data["Wind"] ?? 0);
+
+		energyScore += SOLARWEIGHT*(data["Solar"] ?? 0);
 
 		return Math.round(energyScore);
 	}
@@ -54,7 +65,6 @@
 	<h3>Energy Sources</h3>
 	<p>
 		Around {data.percentNaturalGas}% of this location's energy comes from natual gasses, around {data.percentHydroelectric}% comes from hydrioelectric power, about {data.percentSolar}% from solar, and {data.percentWind}% from wind.
-		The rest comes from unaccounte for sources, likely nuclear, coal or wood if the house has a wooden stove or fireplace.
 	</p>
 	<h3>Carbon Footprint</h3>
 	<p>

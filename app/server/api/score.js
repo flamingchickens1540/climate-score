@@ -46,13 +46,22 @@ async function getCarbonFootprint(state) {
     },
   }).then(res => res.json()).then(data => data.data)
   if (DEBUG) console.log(data);
-  return {
-    "carbonFootprint": data.baseline_annual_usage,
-    "percentNaturalGas": data.estimated_generation_data[0].value,
-    "percentHydroelectric": data.estimated_generation_data[1].value,
-    "percentWind": data.estimated_generation_data[2].value,
-    "percentSolar": data.estimated_generation_data[3].value,
+  //The energy data is different depending on the state the request is being made from
+  //If the no energy is generated from that source, wattBuy simply won't return that piece of data.
+  //Because the data is returned in an array, simply converting an array to JSON will break for any state with differeny energy sources than Oregon
+  let ret = {};
+  for(let i = 0; i<data["estimated_generation_data"].length; i++) {
+
+    let key = data["estimated_generation_data"][i].type;
+    let value = data["estimated_generation_data"][i].value;
+    ret[key] = value;
+
   }
+
+  ret.carbonFootprint = data.baseline_annual_usage;
+  if(DEBUG) console.log(ret);
+
+  return ret
 }
 
 async function getWalkscore(lat, long) {
