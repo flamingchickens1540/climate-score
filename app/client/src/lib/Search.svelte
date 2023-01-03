@@ -1,8 +1,4 @@
 <script lang="ts">
-<<<<<<< HEAD:app/client/src/frontend/lib/BetterClimateForm.svelte
-	import { GEOAPI_API_KEY } from "../../../../common/api_keys";
-=======
->>>>>>> new-frontend:app/client/src/lib/Search.svelte
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
 	import type { Coords } from "../../../common/types";
@@ -41,17 +37,10 @@
 		return data
 	}
 	async function getScore(): Promise<void> {
-<<<<<<< HEAD:app/client/src/frontend/lib/BetterClimateForm.svelte
-		if (selection == null) await locScore()
-		else{
-			fetch('http://localhost:5137/score')
-		} //make the request for the score
-=======
 		if (selection == null) await locScore();
 		else {
 			promise = score();
 		}
->>>>>>> new-frontend:app/client/src/lib/Search.svelte
 	}
 	async function locScore(): Promise<void> {
 		if (navigator.geolocation) {
