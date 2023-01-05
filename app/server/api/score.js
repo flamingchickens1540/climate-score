@@ -50,7 +50,7 @@ async function getCarbonFootprint(state) {
   //If the no energy is generated from that source, wattBuy simply won't return that piece of data.
   //Because the data is returned in an array, simply converting an array to JSON will break for any state with differeny energy sources than Oregon
   let ret = {};
-  for(let i = 0; i<data["estimated_generation_data"].length; i++) {
+  for(let i = 0; i<data["estimated_generation_data"].length; i++) {  
 
     let key = data["estimated_generation_data"][i].type;
     let value = data["estimated_generation_data"][i].value;

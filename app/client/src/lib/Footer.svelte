@@ -1,4 +1,3 @@
-<script></script>
 <footer></footer>
 <style>
     footer {
