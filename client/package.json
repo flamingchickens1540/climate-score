@@ -1,0 +1,28 @@
+{
+  "name": "climate-score-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.0",
+    "@tsconfig/svelte": "^3.0.0",
+    "svelte": "^3.55.0",
+    "svelte-check": "^2.10.0",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "@geoapify/geocoder-autocomplete": "^1.5.1",
+    "path": "^0.12.7",
+    "sass": "^1.57.1",
+    "scss": "^0.2.4",
+    "svelte-preprocess": "^5.0.0"
+  }
+}
