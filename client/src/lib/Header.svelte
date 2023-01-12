@@ -1,39 +1,48 @@
-<script type="ts">
+<script lang="ts">
+
+    function handleClick() {
+        location.reload();
+    }
 </script>
 
 <header>
     <nav class="flex" id="climate-score-header">
+        <button id="logobutton" type="button" on:click={handleClick}><img id="logo" src="/climateScoreLogo.png" alt="climateLogo"></button>
         <h1 id="climate-score">Climate Score</h1>
-        <h2 id="phone-num">503-744-1324</h2>
+        <h2 id="phone-num"></h2>
     </nav>
 </header>
 
 <style>
-    /* #climate-score-header{
-        position: relative;
+    #logo {
         width: 100%;
-        height: 30%;
-        top: 0%;
-        padding: 0%;
-        line-height: 75px;
-        text-align: center;
-        font-size: 3.5em;
-        font-weight: 100;
-        font-family: 'Fira Sans';
-        margin-top: 0;
-        margin-left: 0;
-        padding: 0px;
-        align-items: center !important;
-    } */
+        height: 100%;
+        border-radius: 10%;
+        /* left: 1vw;
+        top: 2vh;
+        position: absolute; */
+    }
+    #logobutton {
+        border: none;
+        cursor: pointer;
+        appearance: none;
+        background-color: inherit;
+        width: 8%;
+        height: 85%;
+        left: 0vw;
+        top: 1.5vh;
+        position: absolute;
+    }
+
     #phone-num{
-        left: 2vw;
+        right: 2vw;
         top: 2vh;
         position: absolute;
     }
 
     #climate-score-header{
         position: absolute;
-        width: 99%;
+        width: 98.6vw;
         height: 75px;
         left: 0;
         top: 0;

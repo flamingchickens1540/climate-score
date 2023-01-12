@@ -1,8 +1,13 @@
-const router = require("express").Router()
+const express = require('express');
+const app = express();
 const fetch = require("node-fetch");
 const APIkeys = require("../../secrets/api_keys")
+const cors = require('cors')({origin: true});
+app.use(cors);
+
+const functions = require('firebase-functions');
 const DEBUG = false;
-router.post('/score', async (req, res) => {
+app.get('/score', async (req, res) => {
   const lat = req.body?.lat
   const long = req.body?.long
 
@@ -35,7 +40,7 @@ router.post('/score', async (req, res) => {
   }
 });
 
-module.exports = router
+exports.app = functions.https.onRequest(app);
 
 async function getCarbonFootprint(state) {
   data = await fetch(`https://apis.wattbuy.com/v3/electricity/carbon-footprint?state=${state}`, {

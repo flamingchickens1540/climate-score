@@ -13,6 +13,21 @@ export type Coords = {
     long: number
 }
 
+export type Response = {
+    status: number,
+    walkScore?: number,
+    walkScoreDescription?: string,
+    estimatedGenerationData?: {},
+    carbonFootprint?: number,
+    error: boolean,
+    message?: string
+}
+
+export type WattBuyResponse = {
+    estimatedGenerationData?: {},
+    carbonFootprint?: number
+}
+
 export type SpinnerTypes = {
 	size: string | number;
 	color: string;

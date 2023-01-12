@@ -1,0 +1,3 @@
+export const WATTBUY_API_KEY = "NjovPaB6xl8w0PmXvPQkY7Ow5leJo4PO6lEcU1uV";
+export const WALKSCORE_API_KEY = "fb57a03079734e789b47056a0b1d8c67";
+export const GEOAPI_API_KEY = "71e836327551419baaeced207746cbd1";

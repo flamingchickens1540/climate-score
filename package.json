@@ -1,0 +1,32 @@
+{
+    "name": "climate-score",
+    "version": "0.0.0",
+    "description": "",
+    "main": "server/app.js",
+    "scripts": {
+        "client-install": "cd client && npm install",
+        "start": "node server/index.js",
+        "dev:server": "nodemon server/app.js",
+        "dev:client": "cd client && npm run dev",
+        "dev": "(trap 'kill 0' SIGINT; concurrently 'npm run dev:server' 'npm run dev:client')",
+        "build": "cd client && npm run build"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.1",
+        "concurrently": "^7.6.0",
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "express-ts": "^0.0.1-dev.5",
+        "firebase": "^9.15.0",
+        "firebase-functions": "^4.1.1",
+        "iam": "^0.1.0",
+        "node": "^19.3.0",
+        "node-fetch": "^3.3.0",
+        "rollup-plugin-node-builtins": "^2.1.2",
+        "ts-node": "^10.9.1"
+    },
+    "devDependencies": {
+        "@types/node-fetch": "^2.6.2",
+        "nodemon": "^2.0.20"
+    }
+}
