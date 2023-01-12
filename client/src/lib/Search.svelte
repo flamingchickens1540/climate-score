@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
-	import type { Coords } from "../../../common/types";
+	import type { Coords } from "../../common/types";
 	export let promise = null;
 	let autoDiv: HTMLDivElement;
 	let selection: Coords = null;

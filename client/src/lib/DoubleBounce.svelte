@@ -1,8 +1,8 @@
 
 <script lang="ts">
-	import type { SpinnerTypes } from '../../../common/types'
+	import type { SpinnerTypes } from '../../common/types'
 	import { range, durationUnitRegex } from './utils';
-	export let color: SpinnerTypes['color'] = ''
+	export let color: SpinnerTypes['color'] = '#25591F'
 	export let unit: SpinnerTypes['unit'] = 'px';
 	export let duration: SpinnerTypes['duration'] = '2.1s';
 	export let size: SpinnerTypes['size'] = '60';

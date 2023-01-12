@@ -1,4 +1,4 @@
-import type { Coords, Response, WattBuyResponse } from '../../../common/types';
+import type { Coords, Response, WattBuyResponse } from '../../common/types';
 import { WALKSCORE_API_KEY, WATTBUY_API_KEY, GEOAPI_API_KEY } from './api_keys';
 
 const DEBUG = true;

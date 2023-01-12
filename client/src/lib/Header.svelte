@@ -9,7 +9,7 @@
     <nav class="flex" id="climate-score-header">
         <button id="logobutton" type="button" on:click={handleClick}><img id="logo" src="/climateScoreLogo.png" alt="climateLogo"></button>
         <h1 id="climate-score">Climate Score</h1>
-        <h2 id="phone-num"></h2>
+        <!-- <h2 id="phone-num"></h2> -->
     </nav>
 </header>
 
