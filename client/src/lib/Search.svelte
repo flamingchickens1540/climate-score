@@ -1,9 +1,34 @@
 <script lang="ts">
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
+	import { initializeApp } from "firebase/app";
 	import type { Coords } from "../../common/types";
-    import { cliScore } from "../backend(ish)/climateScore";
+	import { cliScore } from "../backend(ish)/climateScore";
+	import { getFunctions, httpsCallable } from "firebase/functions";
 	export let promise = null;
+	//
+
+	//Import the functions you need from the SDKs you need
+	import { getAnalytics } from "firebase/analytics";
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig = {
+		apiKey: "AIzaSyBL3j1ttViXT5GzRsZzJaJ_ogy051KYY_k",
+		authDomain: "climate-score-4885a.firebaseapp.com",
+		projectId: "climate-score-4885a",
+		storageBucket: "climate-score-4885a.appspot.com",
+		messagingSenderId: "228724565089",
+		appId: "1:228724565089:web:f098183feb3105cabbb620",
+		measurementId: "G-Z5SZKYFRCD",
+	};
+
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const analytics = getAnalytics(app);
+	//
 	let autoDiv: HTMLDivElement;
 	let selection: Coords = null;
 	onMount(() => {
@@ -28,19 +53,26 @@
 	});
 	//function for the appstate that collects the data
 	async function score() {
-		const data = await fetch("/score", {
-			method: "POST",
-			mode: "cors",
-			credentials: "same-origin",
-			headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-			body: JSON.stringify(selection),
-			
-		}).then((res) => res.json());
+		const functions = getFunctions(app);
+		const data = httpsCallable(functions, "score");
+		let neoData: any;
+		data(selection).then((result) => {
+			// Read result of the Cloud Function.
+			/** @type {any} */
+			neoData = result.data;
+		});
+		// fetch("/score", {
+		// 	method: "POST",
+		// 	mode: "cors",
+		// 	credentials: "same-origin",
+		// 	headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+		// 	body: JSON.stringify(selection),
 
-		if (data.error) throw new Error("Failed to generate climate score")
-		
-		return data
+		// }).then((res) => res.json());
+		/** @ts-ignore */
+		if (neoData.error) throw new Error("Failed to generate climate score");
 
+		return neoData;
 	}
 	async function getScore(): Promise<void> {
 		if (selection == null) await locScore();
@@ -107,14 +139,15 @@
 		position: relative;
 		padding-left: 10px;
 		padding-right: 10px;
-		border-color: #43281C;
+		border-color: #43281c;
 		z-index: inherit;
 	}
+
 	main {
 		display: flex;
 		position: absolute;
 		left: 50%;
-		top: 50%;
+		top: 30%;
 		transform: translate(-50%, -50%);
 		z-index: 10;
 	}
