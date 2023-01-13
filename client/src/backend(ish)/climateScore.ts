@@ -1,12 +1,11 @@
-import type { Coords, Response, WattBuyResponse } from '../../common/types';
+import type { Coords, Res, WattBuyResponse } from '../../common/types';
 import { WALKSCORE_API_KEY, WATTBUY_API_KEY, GEOAPI_API_KEY } from './api_keys';
 
 const DEBUG = true;
-export async function cliScore(coords: Coords): Promise<Response>{
+export async function cliScore(coords: Coords): Promise<Res>{
     let lat = coords.lat;
     let long = coords.long;
-    let res: Response;
-
+    let res: Res = {status: 500};
     if (lat && long) {
         try {
           
@@ -19,6 +18,7 @@ export async function cliScore(coords: Coords): Promise<Response>{
               
           // ]).then((values) => Object.assign({}, ...values))
         if (DEBUG) console.log(walkScoreData, wattBuyData);
+          let res: Res = {estimatedGenerationData: wattBuyData.estimatedGenerationData}
           res.estimatedGenerationData = wattBuyData.estimatedGenerationData;
           res.status = 200;
           res.carbonFootprint = wattBuyData.carbonFootprint;
@@ -30,6 +30,7 @@ export async function cliScore(coords: Coords): Promise<Response>{
           //     ...data
           // })
         } catch (err) {
+            let res: Res = {status: 500};
             res.status = 500;
             res.error = true;
             res.message = "There was a problem generating your Climate Score";
@@ -39,6 +40,7 @@ export async function cliScore(coords: Coords): Promise<Response>{
             // })
         }
     } else {
+      let res: Res = {status: 500}
         res.status = 400;
         res.error = true;
         res.message = "Please provide a lat and long field in the body";
@@ -58,6 +60,7 @@ async function getCarbonFootprint(state: any): Promise<WattBuyResponse> {
     headers: {
       'X-API-KEY': WATTBUY_API_KEY,
       'Accept': 'application/json',
+      "Access-Control-Allow-Origin": '*',
     },
   }).then(res => res.json()).then(data => data["data"])
   if (DEBUG) console.log(data);
@@ -81,16 +84,17 @@ async function getCarbonFootprint(state: any): Promise<WattBuyResponse> {
 
 async function getWalkscore(lat: number, long: number) {
   //fetch(`https://ipapi.co/${ip}/json/`).then((res) => res.json());
-  let data: any = await fetch(`https://api.walkscore.com/score?format=json&lat=${lat}&lon=${long}&wsapikey=${WALKSCORE_API_KEY}`, {method: 'GET', // *GET, POST, PUT, DELETE, etc.
+  let data: any = await fetch(`https://api.walkscore.com/score?format=json&lat=${lat}&lon=${long}&wsapikey=${WALKSCORE_API_KEY}`, {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
           credentials: 'same-origin', // include, *same-origin, omit
           headers: {
               'Content-Type': 'application/json',
-              "Access-Control-Allow-Origin": 'https://api.walkscore.com/',
+              "Access-Control-Allow-Origin": '*',
                // 'Content-Type': 'application/x-www-form-urlencoded',
           }
-      }).then((res: { json: () => any; }) => res.json())
+       }).then((res: { json: () => any; }) => res.json())
 
   if (data.status != 1) { console.log("WalkScore Problem"); throw Error("Walkscore Problem"); }
   if (DEBUG) console.log(data);

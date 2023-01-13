@@ -12,10 +12,8 @@
         "destination": "/index.html"
       },
       {
-        "source": "/score",
-        "function": "score",
-        "region": "us-central1"
-
+        "source": "**",
+        "function": "app"
       }
     ]
   }

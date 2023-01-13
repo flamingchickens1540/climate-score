@@ -2,6 +2,7 @@
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
 	import type { Coords } from "../../common/types";
+    import { cliScore } from "../backend(ish)/climateScore";
 	export let promise = null;
 	let autoDiv: HTMLDivElement;
 	let selection: Coords = null;
@@ -27,14 +28,19 @@
 	});
 	//function for the appstate that collects the data
 	async function score() {
-		const data = await fetch("http://localhost:8080/api/v1/score", {
+		const data = await fetch("/score", {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			mode: "cors",
+			credentials: "same-origin",
+			headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
 			body: JSON.stringify(selection),
+			
 		}).then((res) => res.json());
+
 		if (data.error) throw new Error("Failed to generate climate score")
 		
 		return data
+
 	}
 	async function getScore(): Promise<void> {
 		if (selection == null) await locScore();
