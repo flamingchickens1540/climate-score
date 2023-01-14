@@ -54,18 +54,18 @@
 	//function for the appstate that collects the data
 	async function score() {
 		const functions = getFunctions(app);
-		console.log(functions);
+		console.log("Functions" + functions);
 		const data = httpsCallable(functions, "score");
 		let neoData: any;
-		console.log(selection);
+		console.log("Coords: " + selection);
 		data(selection).then((result) => {
 			// Read result of the Cloud Function.
 			/** @type {any} */
 			neoData = result.data;
 		});
-		console.log(data);
+		console.log("Data: " + data);
 		//
-		// let data = fetch("/app", {
+		// let data = fetch("/score", {
 		// 	method: "POST",
 		// 	mode: "cors",
 		// 	credentials: "same-origin",
@@ -73,6 +73,7 @@
 		// 	body: JSON.stringify(selection),
 
 		// }).then((res) => res.json());
+		console.log("Data: " + data)
 		/** @ts-ignore */
 		if (data.error) throw new Error("Failed to generate climate score");
 
