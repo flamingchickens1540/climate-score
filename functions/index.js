@@ -2,15 +2,14 @@ const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
 const APIkeys = require("../secrets/api_keys")
-const cors = require('cors')({origin: true});
+const cors = require('cors')({origin: true, headers: "Authorization"});
 app.use(cors);
 
 const functions = require('firebase-functions');
 const DEBUG = true;
-app.get('/score', async (req, res) => {
+app.get('/', async (req, res) => {
   const lat = req.body?.lat
   const long = req.body?.long
-  console.log(lat, long);
 
   if (lat && long) {
     try {
