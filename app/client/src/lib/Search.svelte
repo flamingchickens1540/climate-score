@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { GeocoderAutocomplete } from "@geoapify/geocoder-autocomplete";
 	import { onMount } from "svelte";
-	import type { Coords } from "../../../common/types";
+	// import type { Coords } from "../../common/types";
 	export let promise = null;
 	let autoDiv: HTMLDivElement;
-	let selection: Coords = null;
+	let selection = null;
 	onMount(() => {
 		const autocomplete = new GeocoderAutocomplete(
 			autoDiv,
@@ -27,7 +27,7 @@
 	});
 	//function for the appstate that collects the data
 	async function score() {
-		const data = await fetch("http://localhost:8080/api/v1/score", {
+		const data = await fetch("/api/v1/score", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(selection),
@@ -66,7 +66,7 @@
 			getScore();
 		}
 	}
-	async function getLocFromIp(): Promise<Coords> {
+	async function getLocFromIp(): Promise<any> {
 		return fetch(`https://ipify.org/`) //get ip
 			.then((res) => res.text())
 			.then((ip) =>
@@ -92,7 +92,7 @@
 
 <main>
 	<button on:click={locScore}>🎯</button>
-	<div id="autocomplete" class="autocomplete-container" bind:this={autoDiv} />
+	<div id="autocomplete" class="autocomplete-container" bind:this={autoDiv}/>
 	<button on:click={getScore}>🔍</button>
 </main>
 
@@ -103,12 +103,14 @@
 		padding-right: 10px;
 		border-color: #43281C;
 		z-index: inherit;
+		color:#43281C;
 	}
+
 	main {
 		display: flex;
 		position: absolute;
 		left: 50%;
-		top: 20%;
+		top: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 10;
 	}

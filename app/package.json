@@ -5,11 +5,12 @@
   "main": "server/app.js",
   "scripts": {
     "client-install": "cd client && npm install",
-    "start": "node server/index.js",
+    "start": "node server/app.js",
     "dev:server": "nodemon server/app.js",
     "dev:client": "cd client && npm run dev",
-    "dev": "(trap 'kill 0' SIGINT; concurrently 'npm run dev:server' 'npm run dev:client')",
-    "build": "cd client && npm run build"
+    "dev": "concurrently 'npm run dev:server' 'npm run dev:client'",
+    "build": "cd client && npm run build",
+    "prod": "npm run build && npm run start"
   },
   "dependencies": {
     "body-parser": "^1.20.1",

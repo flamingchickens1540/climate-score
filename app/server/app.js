@@ -5,22 +5,20 @@ const api = require('./api/score.js');
 
 const app = express();
 
-app.use(express.static('../client/dist'));
+//host the client
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+	res.sendFile(path.join(__dirname, '../client', 'dist', 'index.html'));
 });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+//host the API
 app.use('/api/v1', api);
 
-app.get('/api/:lat/:long', (req, res) => {
-	
-})
-
-const port = process.env.PORT || 8080;
+const port = 9003;
 
 app.listen(port, () => {
 	console.log(`Server is up at port http://localhost:${port}`);

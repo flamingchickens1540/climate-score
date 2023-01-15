@@ -3,7 +3,7 @@
     footer {
         position: absolute;
         width: 100vw;
-        height: 40px;
+        height: 45px;
         bottom: 0;
         left: 0;
         

@@ -1,3 +1,7 @@
+<svelte:head>
+	<link rel="icon" type="image/png" href="/climateScoreLogo.png" />
+</svelte:head>
+
 <script lang="ts">
 	import Navbar from "./lib/Header.svelte";
 	import ScoreDisplay from "./lib/ScoreDisplay.svelte";
@@ -6,11 +10,7 @@
 	import ScoreLoading from "./lib/ScoreLoading.svelte";
 	import ScoreError from "./lib/ScoreError.svelte";
 	import Settings from "./lib/Settings.svelte";
-	import Hamburger from "./lib/Hamburger.svelte";
-	import { bind } from "svelte/internal";
-
 	let promise;
-
 	let open = false;
 </script>
 
@@ -19,7 +19,7 @@
 	{#if !promise}
 		<Search bind:promise />
 		<img
-			src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL21hcHMuanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjo4Mjh9LCJ0b0Zvcm1hdCI6ImF2aWYifX0="
+			src="https://www.iliketowastemytime.com/sites/default/files/eco_friendly_sky_garden_home1.jpg"
 			alt="placeholder for map"
 		/>
 	{:else}
@@ -33,7 +33,7 @@
 			<ScoreError {error} />
 		{/await}
 	{/if}
-	<Hamburger bind:open />
+	<!-- <Hamburger bind:open /> -->
 	{#if open}
 		<Settings />
 	{/if}
@@ -47,11 +47,10 @@
         display: block;
         position: absolute;
         left: 50%;
-        top: 60%;
+        top: 50%;
         transform: translate(-50%, -50%);
-        width: 73%;
-        height: 73%;
-        border-radius: 100%;
+        width: 100%;
+        height: 90%;
         z-index: -1;   
     }
 </style>
