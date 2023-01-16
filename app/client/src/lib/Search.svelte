@@ -13,7 +13,7 @@
 				type: "amenity",
 				lang: "en",
 				limit: 5,
-				placeholder: "Enter a location",
+				placeholder: "Enter an address",
 				skipIcons: true,
 				skipDetails: true,
 			}
@@ -67,7 +67,7 @@
 		}
 	}
 	async function getLocFromIp(): Promise<any> {
-		return fetch(`https://api.ipify.org/`, {}) //get ip
+		return fetch(`https://api.ipify.org/`) //get ip
 			.then((res) => res.text())
 			.then((ip) =>
 				fetch(`https://ipapi.co/${ip}/json/`) //get location
