@@ -15,9 +15,9 @@
 
 <style>
     #logo {
-        width: 100%;
-        height: 100%;
-        border-radius: 10%;
+        width: 85px;
+        height: 70px;
+        border-radius: 10px;
         /* left: 1vw;
         top: 2vh;
         position: absolute; */
@@ -29,8 +29,8 @@
         background-color: inherit;
         width: 8%;
         height: 85%;
-        left: 0vw;
-        top: 1.5vh;
+        left: -2px;
+        top: 3px;
         position: absolute;
     }
 
@@ -51,11 +51,12 @@
         color: #DCCDBC;
         -webkit-text-stroke: 3px #43281C;
         font-weight: 1000;
-        font-size: 3.5em;
+        font-size: 4.5em;
         position: absolute;
         left: 50%;
-        top: 3%;
+        top: -10%;
         transform: translate(-50%, -50%);
+        font-weight: 1000;
     }
     
     nav{

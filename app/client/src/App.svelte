@@ -10,7 +10,7 @@
 	import ScoreLoading from "./lib/ScoreLoading.svelte";
 	import ScoreError from "./lib/ScoreError.svelte";
 	import Settings from "./lib/Settings.svelte";
-	let promise;
+	let promise: any;
 	let open = false;
 </script>
 

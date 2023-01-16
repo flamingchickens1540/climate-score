@@ -104,14 +104,24 @@
 		border-color: #43281C;
 		z-index: inherit;
 		color:#43281C;
+		padding-top: 7px;
+		border-radius: 10px;
 	}
 
 	main {
 		display: flex;
 		position: absolute;
 		left: 50%;
-		top: 50%;
+		top: 30%;
 		transform: translate(-50%, -50%);
 		z-index: 10;
+		background-color: #25591F;
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	button {
+		font-size: 20px;
+		display: inline-block;
 	}
 </style>
