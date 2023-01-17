@@ -2,7 +2,7 @@
 <script lang="ts">
 	// import type { SpinnerTypes } from '../../common/types'
 	import { range, durationUnitRegex } from './utils';
-	export let color = '#25591F'
+	export let color = '#25591F';
 	export let unit = 'px';
 	export let duration= '2.1s';
 	export let size = '60';
@@ -26,7 +26,9 @@
 		position: absolute;
 		width: var(--size);
 		height: var(--size);
-        left: 50vw;
+        left: 50%;
+		top: 70%;
+		transform: translate(-50%, -50%);
 	}
 	.circle {
 		position: absolute;

@@ -13,7 +13,7 @@
 	const DEBUG: boolean = true;
 	function getClimateScore() {
 		let walkscore: number = data["walkscore"];
-		let adjustedCarbonFootprint: number = Math.round((100 - data["carbonFootprint"] / 370));
+		let adjustedCarbonFootprint: number = Math.round((100 - data["carbonFootprint"] / 300));
 		if(DEBUG) console.log("adjusted footprint: " + adjustedCarbonFootprint);
 
 		let energyScore: any = getEnergyScore(data);
@@ -72,12 +72,12 @@
 	<p>
 		Based off WattBuy's estimates, we found this property's carbon footprint to be around {data["carbonFootprint"]} lbs per year.
 		Although this number is likely higher if this home is in an urban area, and lower if it's in a rural area.
-		{#if data["carbonFootprint"] > 18500}
-			The emissions of this property are about {data["carbonFootprint"] - 18500} lbs more than the average.
-		{:else if data["carbonFootprint"] == 1850}
+		{#if data["carbonFootprint"] > 15000}
+			The emissions of this property are about {data["carbonFootprint"] - 15000} lbs more than the average.
+		{:else if data["carbonFootprint"] == 15000}
 			This property is about average in emissions
 		{:else}
-			The emmissions of this property are about {18500 - data["carbonFootprint"]} lbs less than the average.
+			The emmissions of this property are about {15000 - data["carbonFootprint"]} lbs less than the average.
 		{/if}
 
 	</p>
