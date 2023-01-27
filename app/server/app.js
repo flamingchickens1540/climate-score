@@ -18,7 +18,7 @@ app.use(cors());
 //host the API
 app.use('/api/v1', api);
 
-const port = 9003;
+const port = 3010;
 
 app.listen(port, () => {
 	console.log(`Server is up at port http://localhost:${port}`);
