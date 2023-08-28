@@ -8,7 +8,7 @@ The current sources for data include:
 * [WalkScore](https://www.walkscore.com/)
 * more coming soon! 
 
-
+You probably don't want to use this project/website/code, it's not great.
 
 ## Installation
 First create a secrets folder including an api_keys.ts file with api keys for WalkScore, PositionStack, and WattBuy. 
